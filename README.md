@@ -9,4 +9,4 @@ Le back office, créé avec _Spring Boot_ est divisée en plusieurs _microservic
 ## Installation 
 - Cloner ce repository : git clone https://github.com/franzk/mediscreen.git
 
-- ajoutez les fichiers de propriétés du module mPatient : [README de mPatient](mPatient%2FREADME.md)
+- ajoutez les fichiers de propriétés du module mPatient : [README de mPatient](mPatient%2FREADME.md#installation)
