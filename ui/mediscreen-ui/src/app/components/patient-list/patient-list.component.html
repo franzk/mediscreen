@@ -1,0 +1,24 @@
+<p>Patients</p>
+
+
+<div *ngIf="patients$ | async as patients; else elseTemplate">
+  <table >
+    <thead>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Birthdate</td>
+      <td>Address</td>
+      <td>Phone</td>
+    </thead>
+    <tr *ngFor="let patient of patients!">
+      <td>{{ patient.firstName }}</td>
+      <td>{{ patient.lastName }} </td>
+      <td>{{ patient.birthdate }}</td>
+      <td>{{ patient.address }}</td>
+      <td>{{ patient.phone }}</td>
+    </tr>
+  </table>
+</div>
+<ng-template #elseTemplate>
+loose
+</ng-template>
