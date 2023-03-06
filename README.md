@@ -7,6 +7,6 @@ Le back office, créé avec _Spring Boot_ est divisée en plusieurs _microservic
 - [mPatient](mPatient) : gère les données qui concerne l'identité des patients. 
 
 ## Installation 
-- Cloner ce repository : git clone 
+- Cloner ce repository : git clone https://github.com/franzk/mediscreen.git
 
 - ajoutez les fichiers de propriétés du module mPatient : [README de mPatient](mPatient%2FREADME.md)
