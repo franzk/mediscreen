@@ -1,1 +1,11 @@
-<p>patient works!</p>
+<div  *ngIf="patient$ | async as patient; else elseTemplate" class="patient col-md-6">
+  <p>{{ patient.lastName }}</p>
+  <p>{{ patient.firstName }}</p>
+  <p>{{ patient.birthdate }}</p>
+  <p>{{ patient.address }}</p>
+  <p>{{ patient.phone }}</p>
+</div>
+<ng-template #elseTemplate>
+  <p>Impossible de trouver le patient.</p>
+</ng-template>
+

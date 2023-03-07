@@ -13,4 +13,9 @@ export class PatientService {
     return this.http.get<Patient[]>("http://localhost:8081/patient/");
   }
 
+  public getPatient(id: number) {
+    return this.http.get<Patient>("http://localhost:8081/patient/" + id);
+  }
+
+
 }

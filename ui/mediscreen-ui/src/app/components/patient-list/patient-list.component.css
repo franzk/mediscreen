@@ -2,13 +2,16 @@ table {
   border-spacing: 0px;
 }
 
-td {
+td, th {
   margin: 0px;
   padding: 2px;
   border: 1px solid black;
 }
 
+th {
+  text-align: center;
+}
+
 thead {
   background-color: lightgray;
-  font-weight: bold;
 }

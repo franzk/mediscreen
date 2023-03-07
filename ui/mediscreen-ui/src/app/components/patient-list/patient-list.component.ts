@@ -12,11 +12,12 @@ export class PatientListComponent implements OnInit {
 
   patients$!: Observable<Patient[]>
 
-  constructor(private patientService:PatientService) { }
+  constructor(private patientService: PatientService) { }
 
   ngOnInit(): void {
     this.patients$ = this.patientService.getPatients();
     this.patients$.subscribe(console.log);
   }
+
 
 }
