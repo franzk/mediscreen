@@ -1,5 +1,6 @@
 package com.abernathy.mediscreen.mpatient.controller;
 
+import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.service.PatientService;
@@ -26,7 +27,7 @@ public class PatientController {
     }
 
     @PostMapping(path="/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Patient> add(@RequestParam MultiValueMap<String,String> paramMap) {
+    public ResponseEntity<Patient> add(@RequestParam MultiValueMap<String,String> paramMap) throws DateFormatException {
         log.info(paramMap);
         return new ResponseEntity<>(patientService.importFromUrl(paramMap.toSingleValueMap()), HttpStatus.OK);
     }

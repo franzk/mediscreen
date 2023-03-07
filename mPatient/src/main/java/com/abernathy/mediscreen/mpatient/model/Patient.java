@@ -1,5 +1,6 @@
 package com.abernathy.mediscreen.mpatient.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ public class Patient {
     String lastName;
 
     String firstName;
-
+    
     LocalDate birthdate;
 
     String address;
