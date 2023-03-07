@@ -21,7 +21,7 @@ public class Patient {
     String lastName;
 
     String firstName;
-    
+
     LocalDate birthdate;
 
     String address;

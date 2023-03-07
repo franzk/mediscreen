@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
 
@@ -36,6 +38,10 @@ class PatientServiceImplTest {
         // Assert
         verify(patientRepository, times(1)).save(patient);
     }
+
+//    MockedStatic<LocalDate> localDateMockedStatic = mockStatic(LocalDate.class) {
+//        when(LocalDate.parse(any())).thenReturn()
+//    };
 
     @Test
     void getByIdTest() throws PatientNotFoundException {

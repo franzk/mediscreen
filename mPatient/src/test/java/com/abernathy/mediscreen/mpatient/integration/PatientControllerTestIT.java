@@ -14,8 +14,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
@@ -39,6 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@PropertySource("classpath:messages.properties")
 class PatientControllerTestIT {
 
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
@@ -55,6 +58,11 @@ class PatientControllerTestIT {
 
     ObjectMapper mapper = new ObjectMapper();
 
+    @Value("${patient.errormessage.invaliddateformat}")
+    private String invalidDateFormatMessage;
+
+    @Value("${patient.errormessage.patientnotfound}")
+    private String patientNotFoundErrorMessage;
 
     @BeforeAll
     void setUp() {
@@ -85,7 +93,22 @@ class PatientControllerTestIT {
 
     }
 
-    @DisplayName("GET : /patient/ ")
+    @DisplayName("POST : /patient/add with Date Format Exception")
+    @Sql(scripts = POPULATE_TEST_DB_SQL)
+    @Test
+    void addWithDateFormatExceptionTestIT() throws Exception {
+        // Arrange
+        String urlData = "family=TestNone&given=Test&dob=1966-12-32&sex=F&address=1 Brookside St&phone=100-222-3333";
+
+        // Act + Assert
+        mockMvc.perform(post("/patient/add")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                        .content(urlData))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(invalidDateFormatMessage));
+    }
+
+    @DisplayName("GET : /patient/ (getAll)")
     @Sql(scripts = POPULATE_TEST_DB_SQL)
     @Test
     void getAllIT() throws Exception {
@@ -122,15 +145,17 @@ class PatientControllerTestIT {
         assertThat(resultData.getLastName()).isEqualTo(testPatient.getLastName());
     }
 
-    @DisplayName("GET : /patient/{id} with not found error")
+    @DisplayName("GET : /patient/{id} with PatientNotFoundException")
     @Sql(scripts = POPULATE_TEST_DB_SQL)
     @Test
-    void getByIdWithNotFoundExceptionTestIT() throws Exception {
+    void getByIdWithPatientNotFoundExceptionTestIT() throws Exception {
         // Arrange
         int id = Integer.MAX_VALUE;
-        // Act + Assert
-        mockMvc.perform(get("/patient/{id}", id))
-                .andExpect(status().isNotFound());
+        // Act
+        ResultActions resultActions = mockMvc
+                .perform(get("/patient/{id}", id))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(patientNotFoundErrorMessage));
     }
 
     @DisplayName("UPDATE : /patient/udpate/ ")
@@ -155,7 +180,22 @@ class PatientControllerTestIT {
         assertThat(result.getLastName()).isEqualTo(newLastName);
     }
 
-    @DisplayName("GET : /patient/delete/{id} ")
+    @DisplayName("UPDATE : /patient/udpate/ with PatientNotFoundException")
+    @Sql(scripts = POPULATE_TEST_DB_SQL)
+    @Test
+    void updateWithPatientNotFoundExceptionTestIT() throws Exception {
+        // Arrange
+        Patient testPatient = new Patient();
+        testPatient.setId(Integer.MAX_VALUE);
+        String requestJson = mapper.writeValueAsString(testPatient);
+
+        // Act + Assert
+        mockMvc.perform(put("/patient/update").contentType(APPLICATION_JSON_UTF8).content(requestJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(patientNotFoundErrorMessage));
+    }
+
+    @DisplayName("DELETE : /patient/delete/{id} ")
     @Sql(scripts = POPULATE_TEST_DB_SQL)
     @Test
     void deleteByIdTestIT() throws Exception {
@@ -169,7 +209,7 @@ class PatientControllerTestIT {
         assertThrows(PatientNotFoundException.class, () -> patientService.getById(idToDelete));
     }
 
-    @DisplayName("GET : /patient/delete/{id} with not found error")
+    @DisplayName("DELETE : /patient/delete/{id} with not found error")
     @Sql(scripts = POPULATE_TEST_DB_SQL)
     @Test
     void deleteByIdWithNotFoundExceptionTestIT() throws Exception {
@@ -177,7 +217,8 @@ class PatientControllerTestIT {
         int id = Integer.MAX_VALUE;
         // Act + Assert
         mockMvc.perform(delete("/patient/delete/{id}", id))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(patientNotFoundErrorMessage));
     }
 
 }
