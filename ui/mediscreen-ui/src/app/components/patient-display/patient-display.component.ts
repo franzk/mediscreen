@@ -1,15 +1,15 @@
-import { PatientService } from './../../service/patient.service';
+import { PatientService } from '../../service/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from 'src/app/model/patient';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-patient',
-  templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.css']
+  selector: 'app-display-patient',
+  templateUrl: './patient-display.component.html',
+  styleUrls: ['./patient-display.component.css']
 })
-export class PatientComponent implements OnInit {
+export class PatientDisplayComponent implements OnInit {
 
   patient$!: Observable<Patient>;
 

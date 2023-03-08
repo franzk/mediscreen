@@ -48,6 +48,11 @@ public class PatientController {
         return new ResponseEntity<>(patientService.importFromUrl(paramMap.toSingleValueMap()), HttpStatus.OK);
     }
 
+    @PostMapping(path="/insert")
+    public ResponseEntity<Patient> add(@RequestBody Patient patient) throws DateFormatException {
+        return new ResponseEntity<>(patientService.add(patient), HttpStatus.OK);
+    }
+
     /**
      * GET (all) operation <br>
      * @return a list of all {@link Patient}s and status code 200 (OK)

@@ -5,18 +5,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PatientComponent } from './components/patient/patient.component';
+import { PatientDisplayComponent } from './components/patient-display/patient-display.component';
 import { HeaderComponent } from './components/header/header.component';
+import { PatientFormComponent } from './components/patient-form/patient-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientListComponent,
-    PatientComponent,
-    HeaderComponent
+    PatientDisplayComponent,
+    HeaderComponent,
+    PatientFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
   ],

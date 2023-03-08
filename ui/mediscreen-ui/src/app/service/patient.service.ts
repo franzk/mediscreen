@@ -17,5 +17,14 @@ export class PatientService {
     return this.http.get<Patient>("http://localhost:8081/patient/" + id);
   }
 
+  public updatePatient(id: number, patient: Patient) {
+    patient.id = id;
+    return this.http.put<Patient>("http://localhost:8081/patient/update", patient);
+  }
+
+  public addPatient(patient: Patient) {
+    return this.http.post<Patient>("http://localhost:8081/patient/insert", patient);
+  }
+
 
 }

@@ -1,9 +1,11 @@
+<a [routerLink]="['/']">Retour à la liste des patients</a>
 <div  *ngIf="patient$ | async as patient; else elseTemplate" class="patient col-md-6">
   <p>{{ patient.lastName }}</p>
   <p>{{ patient.firstName }}</p>
   <p>{{ patient.birthdate }}</p>
   <p>{{ patient.address }}</p>
   <p>{{ patient.phone }}</p>
+  <p><a [routerLink]="['/patient/edit', patient.id]" class="btn btn-primary">Edit</a></p>
 </div>
 <ng-template #elseTemplate>
   <p>Impossible de trouver le patient.</p>
