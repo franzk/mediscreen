@@ -4,6 +4,8 @@ import com.abernathy.mediscreen.mpatient.GenerateTestData;
 import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
+import com.abernathy.mediscreen.mpatient.model.PatientDto;
+import com.abernathy.mediscreen.mpatient.service.PatientMapper;
 import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,23 +29,27 @@ class PatientControllerTest {
     @Mock
     PatientServiceImpl patientService;
 
+    @Mock
+    PatientMapper patientMapper;
+
     @Test
     void addTest() throws DateFormatException {
         // Arrange
-        MultiValueMap<String,String> testMap = new LinkedMultiValueMap<String, String>();
+        PatientDto patientDto = new PatientDto();
         // Act
-        controllerUnderTest.add(testMap);
+        controllerUnderTest.add(patientDto);
         // Assert
-        verify(patientService, times(1)).importFromUrl(any());
+        verify(patientMapper, times(1)).dtoToPatient(patientDto);
+        verify(patientService, times(1)).add(any());
     }
 
     @Test
     void addWithDateFormatExceptionTest() throws DateFormatException {
         // Arrange
-        MultiValueMap<String,String> testMap = new LinkedMultiValueMap<String, String>();
-        when(patientService.importFromUrl(any())).thenThrow(DateFormatException.class);
+        PatientDto patientDto = new PatientDto();
+        when(patientMapper.dtoToPatient(any())).thenThrow(DateFormatException.class);
         // Act + Assert
-        assertThrows(DateFormatException.class, () -> controllerUnderTest.add(testMap));
+        assertThrows(DateFormatException.class, () -> controllerUnderTest.add(patientDto));
     }
 
 

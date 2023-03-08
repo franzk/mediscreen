@@ -3,6 +3,8 @@ package com.abernathy.mediscreen.mpatient.controller;
 import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
+import com.abernathy.mediscreen.mpatient.model.PatientDto;
+import com.abernathy.mediscreen.mpatient.service.PatientMapper;
 import com.abernathy.mediscreen.mpatient.service.PatientService;
 import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,12 +29,14 @@ import java.util.List;
 public class PatientController {
 
     private final PatientService patientService;
+    private final PatientMapper patientMapper;
 
     @Value("${patient.api.deletecompleted}")
     private String deleteCompletedMessage;
 
-    public PatientController(PatientServiceImpl patientServiceImpl) {
+    public PatientController(PatientServiceImpl patientServiceImpl, PatientMapper patientMapper) {
         this.patientService = patientServiceImpl;
+        this.patientMapper = patientMapper;
     }
 
     /**
@@ -42,11 +46,11 @@ public class PatientController {
      * @throws DateFormatException if format YYYY-MM-DD is not respected
      * @apiNote : curl -d "family=XXX&given=XXXX&dob=YYYY-MM-DD&sex=F&address=XXX&phone=XXX" -X POST http://domain:port/patient/add
      */
-    @PostMapping(path="/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Patient> add(@RequestParam MultiValueMap<String,String> paramMap) throws DateFormatException {
-        log.info(paramMap);
-        return new ResponseEntity<>(patientService.importFromUrl(paramMap.toSingleValueMap()), HttpStatus.OK);
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<Patient> add(PatientDto patientDto) throws DateFormatException {
+        return new ResponseEntity<>(patientService.add(patientMapper.dtoToPatient(patientDto)), HttpStatus.OK);
     }
+
 
     @PostMapping(path="/insert")
     public ResponseEntity<Patient> add(@RequestBody Patient patient) throws DateFormatException {

@@ -29,6 +29,8 @@ public class Patient {
 
     LocalDate birthdate;
 
+    String sex;
+
     String address;
 
     String phone;

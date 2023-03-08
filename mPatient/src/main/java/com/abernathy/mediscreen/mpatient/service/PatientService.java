@@ -47,38 +47,4 @@ public interface PatientService {
      */
     void deleteById(Integer id) throws PatientNotFoundException;
 
-    /**
-     * Import patient from encoded value <br>
-     * Add the decoded new {@link Patient}
-     * @param params a map of parameters. Should contain these keys :  <br>
-     *               family                                            <br>
-     *               given                                             <br>
-     *               dob (yyyy-MM-dd format)                           <br>
-     *               address                                           <br>
-     *               phone                                             <br>
-     * @return the decoded new {@link Patient} added
-     * @throws DateFormatException if dob parameter don't respect the yyyy-MM-dd format
-     * @see com.abernathy.mediscreen.mpatient.controller.PatientController#add(MultiValueMap)
-     */
-    default Patient importFromUrl(Map<String, String> params) throws DateFormatException {
-        Patient patient = new Patient();
-        patient.setLastName(params.get("family"));
-        patient.setFirstName(params.get("given"));
-
-        // Date
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        try {
-            LocalDate birthDate = LocalDate.parse(params.get("dob"), formatter);
-            patient.setBirthdate(birthDate);
-        }
-        catch(DateTimeParseException exception) {
-            throw new DateFormatException();
-        }
-
-
-        patient.setAddress(params.get("address"));
-        patient.setPhone(params.get("phone"));
-        return this.add(patient);
-    }
-
 }

@@ -90,7 +90,9 @@ class PatientControllerTestIT {
         assertThat(resultExpected.getLastName()).isEqualTo("TestNone");
         assertThat(resultExpected.getFirstName()).isEqualTo("Test");
         assertThat(resultExpected.getBirthdate()).isEqualTo(LocalDate.of(1966, 12, 31));
-
+        assertThat(resultExpected.getSex()).isEqualTo("F");
+        assertThat(resultExpected.getAddress()).isEqualTo("1 Brookside St");
+        assertThat(resultExpected.getPhone()).isEqualTo("100-222-3333");
     }
 
     @DisplayName("POST : /patient/add with Date Format Exception")
