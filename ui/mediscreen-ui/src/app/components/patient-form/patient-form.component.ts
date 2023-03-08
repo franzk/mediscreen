@@ -15,7 +15,8 @@ export class PatientFormComponent implements OnInit {
   patient$!: Observable<Patient>;
   patientForm!: FormGroup;
   id!: number;
-  error?: boolean;
+  notFoundError?: boolean;
+  validationError?: string;
   isAddMode?: boolean;
 
   constructor(private formBuilder: FormBuilder, private patientService: PatientService, private route: ActivatedRoute, private router: Router) { }
@@ -25,6 +26,7 @@ export class PatientFormComponent implements OnInit {
       lastName: [null],
       firstName: [null],
       birthdate: [null],
+      sex:  [null],
       address: [null],
       phone: [null]
     });
@@ -41,9 +43,9 @@ export class PatientFormComponent implements OnInit {
       this.patient$.pipe(
         tap(p => this.patientForm.patchValue(p)),
         catchError(err => {
-          console.log('oops', err);
+          console.log(err);
           if (err.status === 400) {
-            this.error = true;
+            this.notFoundError = true;
             return of({});
           }
           else {
@@ -58,7 +60,6 @@ export class PatientFormComponent implements OnInit {
     if (this.isAddMode) {
       this.patientService.addPatient(this.patientForm.value).pipe(
         tap(() => {
-          //this.router.navigate(['patient', this.id]);
           this.router.navigate(['']);
         })
       ).subscribe()
@@ -67,6 +68,16 @@ export class PatientFormComponent implements OnInit {
       this.patientService.updatePatient(this.id, this.patientForm.value).pipe(
         tap(() => {
           this.router.navigate(['patient', this.id]);
+        }),
+        catchError(err => {
+          console.log('kkk', err);
+          if (err.status === 400) {
+            this.validationError = err.error;
+            return of({});
+          }
+          else {
+            return throwError(() => err)
+          }
         })
       ).subscribe();
     }

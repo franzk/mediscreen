@@ -1,16 +1,14 @@
 package com.abernathy.mediscreen.mpatient.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Represents Patient info details <br>
- * (id, lastName, firstName, birthdate, address, phone)
+ * (id, lastName, firstName, birthdate, sex, address, phone)
  */
 
 @Entity
@@ -23,16 +21,16 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String lastName;
+    private String lastName;
 
-    String firstName;
+    private String firstName;
 
-    LocalDate birthdate;
+    private LocalDate birthdate;
 
-    String sex;
+    private String sex;
 
-    String address;
+    private String address;
 
-    String phone;
+    private String phone;
 
 }

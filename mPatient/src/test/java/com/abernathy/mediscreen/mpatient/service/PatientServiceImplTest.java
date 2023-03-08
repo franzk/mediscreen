@@ -4,15 +4,12 @@ import com.abernathy.mediscreen.mpatient.GenerateTestData;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.repository.PatientRepository;
-import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
 

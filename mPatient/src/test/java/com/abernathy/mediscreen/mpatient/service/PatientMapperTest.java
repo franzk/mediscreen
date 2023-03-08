@@ -1,9 +1,10 @@
 package com.abernathy.mediscreen.mpatient.service;
 
+import com.abernathy.mediscreen.mpatient.GenerateTestData;
 import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.model.PatientDto;
-import net.bytebuddy.utility.RandomString;
+import com.abernathy.mediscreen.mpatient.model.PatientImportDto;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -13,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PatientMapperTest {
 
-    PatientMapper classUnderTest = new PatientMapper();
+    final PatientMapper classUnderTest = new PatientMapper();
 
     @Test
-    void dtoToPatientTest() throws DateFormatException {
+    void patientImportDtoToPatientTest() throws DateFormatException {
         // Arrange
-        PatientDto testDto = generateRandomPatientDto(1925, 12, 5);
+        PatientImportDto testDto = GenerateTestData.patientImportDto(1925, 12, 5);
 
         // Act
-        Patient result = classUnderTest.dtoToPatient(testDto);
+        Patient result = classUnderTest.patientImportDtoToPatient(testDto);
 
         // Assert
         assertThat(result.getLastName()).isEqualTo(testDto.getFamily());
@@ -34,23 +35,37 @@ class PatientMapperTest {
     }
 
     @Test
-    void dtoToPatientWithDateFormatExceptionTest()  {
+    void patientImportDtoToPatientWithDateFormatExceptionTest()  {
         // Arrange
-        PatientDto testDto = generateRandomPatientDto(1988, 13, 14);
+        PatientImportDto testDto = GenerateTestData.patientImportDto(1988, 13, 14); // 14/13/1988 is bad
         // Act + Assert
-        assertThrows(DateFormatException.class, () -> classUnderTest.dtoToPatient(testDto));
+        assertThrows(DateFormatException.class, () -> classUnderTest.patientImportDtoToPatient(testDto));
     }
 
+    @Test
+    void patientDtoToPatientTest() throws DateFormatException {
+        // Arrange
+        PatientDto testDto = GenerateTestData.patientDto(1958, 5, 22);
+        // Act
+        Patient result = classUnderTest.patientDtoToPatient(testDto);
+        // Assert
+        assertThat(result.getId()).isEqualTo(testDto.getId());
+        assertThat(result.getFirstName()).isEqualTo(testDto.getFirstName());
+        assertThat(result.getLastName()).isEqualTo(testDto.getLastName());
+        assertThat(result.getBirthdate()).isEqualTo(LocalDate.of(1958, 5, 22));
+        assertThat(result.getSex()).isEqualTo(testDto.getSex());
+        assertThat(result.getAddress()).isEqualTo(testDto.getAddress());
+        assertThat(result.getPhone()).isEqualTo(testDto.getPhone());
 
-    private PatientDto generateRandomPatientDto(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-        PatientDto testDto = new PatientDto();
-        testDto.setFamily(RandomString.make(64));
-        testDto.setGiven(RandomString.make(64));
-        testDto.setDob(String.format("%d-%02d-%02d", yearOfBirth, monthOfBirth, dayOfBirth));
-        testDto.setSex(RandomString.make(64));
-        testDto.setAddress(RandomString.make(64));
-        testDto.setPhone(RandomString.make(64));
-        return testDto;
     }
+
+    @Test
+    void patientDtoToPatientWithDateFormatExceptionTest()  {
+        // Arrange
+        PatientDto testDto = GenerateTestData.patientDto(1988, 13, 14); // 14/13/1988 is bad !
+        // Act + Assert
+        assertThrows(DateFormatException.class, () -> classUnderTest.patientDtoToPatient(testDto));
+    }
+
 
 }

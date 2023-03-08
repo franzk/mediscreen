@@ -8,6 +8,7 @@
         <th>Last Name</th>
         <th>First Name</th>
         <th>Birthdate</th>
+        <th>Sex</th>
         <th>Address</th>
         <th>Phone</th>
       </tr>
@@ -17,6 +18,7 @@
       <td><a [routerLink]="['/patient', patient.id]">  {{ patient.lastName }}</a></td>
       <td>{{ patient.firstName }} </td>
       <td>{{ patient.birthdate }}</td>
+      <td>{{ patient.sex }}</td>
       <td>{{ patient.address }}</td>
       <td>{{ patient.phone }}</td>
     </tr>

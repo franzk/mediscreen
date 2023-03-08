@@ -5,15 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PatientDto {
+public class PatientImportDto {
 
-    Integer id;
+    private String family;
 
-    private String lastName;
+    private String given;
 
-    private String firstName;
-
-    private String birthdate;
+    private String dob;
 
     private String sex;
 

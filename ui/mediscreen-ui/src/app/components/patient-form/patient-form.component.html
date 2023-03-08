@@ -1,5 +1,5 @@
 <a [routerLink]="['/']">Retour à la liste des patients</a>
-<ng-container *ngIf="error; else elseTemplate">
+<ng-container *ngIf="notFoundError; else elseTemplate">
   <p>Impossible de trouver le patient.</p>
 </ng-container>
 <ng-template #elseTemplate>
@@ -9,10 +9,12 @@
     <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Nom">
     <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Prénom">
     <input type="text" class="form-control" id="birthdate" formControlName="birthdate" placeholder="Date de naissance">
+    <input type="text" class="form-control" id="sex" formControlName="sex" placeholder="Sexe">
     <input type="text" class="form-control" id="address" formControlName="address" placeholder="Adresse">
     <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Téléphone">
     <button class="btn btn-primary">Save</button>
   </form>
+  <div *ngIf="validationError" class="text-danger">{{ validationError }}</div>
 </ng-template>
 
 

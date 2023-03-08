@@ -3,12 +3,12 @@ package com.abernathy.mediscreen.mpatient.integration;
 import com.abernathy.mediscreen.mpatient.GenerateTestData;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
+import com.abernathy.mediscreen.mpatient.model.PatientDto;
 import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ class PatientControllerTestIT {
     @Autowired
     PatientServiceImpl patientService;
 
-    ObjectMapper mapper = new ObjectMapper();
+    final ObjectMapper mapper = new ObjectMapper();
 
     @Value("${patient.error.invaliddateformat}")
     private String invalidDateFormatMessage;
@@ -125,7 +125,7 @@ class PatientControllerTestIT {
         // Assert
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
-        List<Patient> resultData = mapper.readValue(contentAsString, new TypeReference<List<Patient>>() {});
+        List<Patient> resultData = mapper.readValue(contentAsString, new TypeReference<>() {});
         assertThat(resultData).hasSize(TEST_RECORDS_COUNT + 1);
     }
 
@@ -154,13 +154,12 @@ class PatientControllerTestIT {
         // Arrange
         int id = Integer.MAX_VALUE;
         // Act
-        ResultActions resultActions = mockMvc
-                .perform(get("/patient/{id}", id))
+        mockMvc.perform(get("/patient/{id}", id))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(patientNotFoundErrorMessage));
     }
 
-    @DisplayName("UPDATE : /patient/udpate/ ")
+    @DisplayName("PUT : /patient/udpate/ ")
     @Sql(scripts = POPULATE_TEST_DB_SQL)
     @Test
     void updateTestIT() throws Exception {
@@ -168,33 +167,60 @@ class PatientControllerTestIT {
         Patient testPatient = GenerateTestData.patient();
         Patient addedPatient = patientService.add(testPatient);
 
-        String newLastName = RandomString.make(64);
-        testPatient.setId(addedPatient.getId());
-        testPatient.setLastName(newLastName);
+        PatientDto testDto = GenerateTestData.patientDto(1999, 12, 12);
 
-        String requestJson = mapper.writeValueAsString(testPatient);
+        testDto.setId(testPatient.getId());
+
+        String requestJson = mapper.writeValueAsString(testDto);
 
         // Act
         mockMvc.perform(put("/patient/update").contentType(APPLICATION_JSON_UTF8).content(requestJson))
                 .andExpect(status().isOk());
         // Assert
         Patient result = patientService.getById(addedPatient.getId());
-        assertThat(result.getLastName()).isEqualTo(newLastName);
+        assertThat(result.getLastName()).isEqualTo(testDto.getLastName());
+        assertThat(result.getFirstName()).isEqualTo(testDto.getFirstName());
+        assertThat(result.getBirthdate()).isEqualTo(LocalDate.of(1999, 12, 12));
+        assertThat(result.getSex()).isEqualTo(testDto.getSex());
+        assertThat(result.getAddress()).isEqualTo(testDto.getAddress());
+        assertThat(result.getPhone()).isEqualTo(testDto.getPhone());
+
     }
 
-    @DisplayName("UPDATE : /patient/udpate/ with PatientNotFoundException")
+    @DisplayName("PUT : /patient/udpate/ with PatientNotFoundException")
     @Sql(scripts = POPULATE_TEST_DB_SQL)
     @Test
     void updateWithPatientNotFoundExceptionTestIT() throws Exception {
         // Arrange
-        Patient testPatient = new Patient();
-        testPatient.setId(Integer.MAX_VALUE);
-        String requestJson = mapper.writeValueAsString(testPatient);
+        PatientDto testDto = GenerateTestData.patientDto();
+        testDto.setId(Integer.MAX_VALUE);
+        String requestJson = mapper.writeValueAsString(testDto);
 
         // Act + Assert
         mockMvc.perform(put("/patient/update").contentType(APPLICATION_JSON_UTF8).content(requestJson))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(patientNotFoundErrorMessage));
+    }
+
+
+    @DisplayName("PUT : /patient/udpate/ with DateFormatException")
+    @Sql(scripts = POPULATE_TEST_DB_SQL)
+    @Test
+    void updateWithDateFormatExceptionTestIT() throws Exception {
+        // Arrange
+        Patient testPatient = GenerateTestData.patient();
+
+        PatientDto testDto = GenerateTestData.patientDto(1999, 12, 45); // 45/12/1999 is bad
+
+        testDto.setId(testPatient.getId());
+
+        String requestJson = mapper.writeValueAsString(testDto);
+
+        // Act + Assert
+        mockMvc.perform(put("/patient/update").contentType(APPLICATION_JSON_UTF8).content(requestJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(invalidDateFormatMessage));
+
     }
 
     @DisplayName("DELETE : /patient/delete/{id} ")
