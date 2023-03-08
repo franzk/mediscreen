@@ -58,10 +58,10 @@ class PatientControllerTestIT {
 
     ObjectMapper mapper = new ObjectMapper();
 
-    @Value("${patient.errormessage.invaliddateformat}")
+    @Value("${patient.error.invaliddateformat}")
     private String invalidDateFormatMessage;
 
-    @Value("${patient.errormessage.patientnotfound}")
+    @Value("${patient.error.patientnotfound}")
     private String patientNotFoundErrorMessage;
 
     @BeforeAll
