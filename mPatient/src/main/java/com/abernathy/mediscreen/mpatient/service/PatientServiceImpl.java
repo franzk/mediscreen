@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implements {@link PatientService} interface calling {@link PatientRepository} methods
+ */
 @Service
 public class PatientServiceImpl implements PatientService {
 

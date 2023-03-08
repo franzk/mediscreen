@@ -8,6 +8,11 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Represents Patient info details <br>
+ * (id, lastName, firstName, birthdate, address, phone)
+ */
+
 @Entity
 @Table(name = "patient")
 @Getter
