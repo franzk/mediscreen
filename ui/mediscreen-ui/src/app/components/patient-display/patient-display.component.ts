@@ -18,7 +18,6 @@ export class PatientDisplayComponent implements OnInit {
   ngOnInit(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')?.toString()!);
     this.patient$ = this.patientService.getPatient(id);
-    this.patient$.subscribe;
   }
 
 }

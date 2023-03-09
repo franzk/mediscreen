@@ -5,7 +5,7 @@ import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.model.PatientDto;
-import com.abernathy.mediscreen.mpatient.model.PatientImportDto;
+import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import com.abernathy.mediscreen.mpatient.service.PatientMapper;
 import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -34,21 +34,21 @@ class PatientControllerTest {
     @Test
     void importFromUrlTest() throws DateFormatException {
         // Arrange
-        PatientImportDto dto = new PatientImportDto();
+        PatientUrlDto dto = new PatientUrlDto();
         // Act
-        controllerUnderTest.importFromUrl(dto);
+        controllerUnderTest.createFromUrl(dto);
         // Assert
-        verify(patientMapper, times(1)).patientImportDtoToPatient(dto);
+        verify(patientMapper, times(1)).patientUrlDtoToPatient(dto);
         verify(patientService, times(1)).add(any());
     }
 
     @Test
     void importFromUrlWithDateFormatExceptionTest() throws DateFormatException {
         // Arrange
-        PatientImportDto dto = new PatientImportDto();
-        when(patientMapper.patientImportDtoToPatient(any())).thenThrow(DateFormatException.class);
+        PatientUrlDto dto = new PatientUrlDto();
+        when(patientMapper.patientUrlDtoToPatient(any())).thenThrow(DateFormatException.class);
         // Act + Assert
-        assertThrows(DateFormatException.class, () -> controllerUnderTest.importFromUrl(dto));
+        assertThrows(DateFormatException.class, () -> controllerUnderTest.createFromUrl(dto));
     }
 
     @Test
@@ -56,7 +56,7 @@ class PatientControllerTest {
         // Arrange
         PatientDto dto = new PatientDto();
         // Act
-        controllerUnderTest.insert(dto);
+        controllerUnderTest.createFromBody(dto);
         // Assert
         verify(patientMapper, times(1)).patientDtoToPatient(dto);
         verify(patientService, times(1)).add(any());
@@ -68,7 +68,7 @@ class PatientControllerTest {
         PatientDto dto = new PatientDto();
         when(patientMapper.patientDtoToPatient(any())).thenThrow(DateFormatException.class);
         // Act + Assert
-        assertThrows(DateFormatException.class, () -> controllerUnderTest.insert(dto));
+        assertThrows(DateFormatException.class, () -> controllerUnderTest.createFromBody(dto));
     }
 
 

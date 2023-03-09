@@ -4,7 +4,7 @@ import com.abernathy.mediscreen.mpatient.GenerateTestData;
 import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.model.PatientDto;
-import com.abernathy.mediscreen.mpatient.model.PatientImportDto;
+import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -17,12 +17,12 @@ class PatientMapperTest {
     final PatientMapper classUnderTest = new PatientMapper();
 
     @Test
-    void patientImportDtoToPatientTest() throws DateFormatException {
+    void patientUrlDtoToPatientTest() throws DateFormatException {
         // Arrange
-        PatientImportDto testDto = GenerateTestData.patientImportDto(1925, 12, 5);
+        PatientUrlDto testDto = GenerateTestData.patientUrlDto(1925, 12, 5);
 
         // Act
-        Patient result = classUnderTest.patientImportDtoToPatient(testDto);
+        Patient result = classUnderTest.patientUrlDtoToPatient(testDto);
 
         // Assert
         assertThat(result.getLastName()).isEqualTo(testDto.getFamily());
@@ -35,11 +35,11 @@ class PatientMapperTest {
     }
 
     @Test
-    void patientImportDtoToPatientWithDateFormatExceptionTest()  {
+    void patientUrlDtoToPatientWithDateFormatExceptionTest()  {
         // Arrange
-        PatientImportDto testDto = GenerateTestData.patientImportDto(1988, 13, 14); // 14/13/1988 is bad
+        PatientUrlDto testDto = GenerateTestData.patientUrlDto(1988, 13, 14); // 14/13/1988 is bad
         // Act + Assert
-        assertThrows(DateFormatException.class, () -> classUnderTest.patientImportDtoToPatient(testDto));
+        assertThrows(DateFormatException.class, () -> classUnderTest.patientUrlDtoToPatient(testDto));
     }
 
     @Test

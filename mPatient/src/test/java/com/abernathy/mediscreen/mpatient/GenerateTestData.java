@@ -2,7 +2,7 @@ package com.abernathy.mediscreen.mpatient;
 
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.model.PatientDto;
-import com.abernathy.mediscreen.mpatient.model.PatientImportDto;
+import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import net.bytebuddy.utility.RandomString;
 
 import java.time.LocalDate;
@@ -21,8 +21,8 @@ public class GenerateTestData {
         return patient;
     }
 
-    public static PatientImportDto patientImportDto(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-        PatientImportDto testDto = new PatientImportDto();
+    public static PatientUrlDto patientUrlDto(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+        PatientUrlDto testDto = new PatientUrlDto();
         testDto.setFamily(RandomString.make(64));
         testDto.setGiven(RandomString.make(64));
         testDto.setDob(String.format("%d-%02d-%02d", yearOfBirth, monthOfBirth, dayOfBirth));

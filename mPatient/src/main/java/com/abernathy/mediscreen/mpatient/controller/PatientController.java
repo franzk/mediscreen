@@ -4,10 +4,11 @@ import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.model.PatientDto;
-import com.abernathy.mediscreen.mpatient.model.PatientImportDto;
+import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import com.abernathy.mediscreen.mpatient.service.PatientMapper;
 import com.abernathy.mediscreen.mpatient.service.PatientService;
 import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -40,15 +41,15 @@ public class PatientController {
     }
 
     /**
-     * POST operation : create a patient from a url encoded parameter
-     * @param patientImportDto dto for url encoded data
+     * POST operation : create a patient from url encoded parameter
+     * @param patientUrlDto dto for url encoded data
      * @return the created {@link Patient} and status code 200 (OK)
      * @throws DateFormatException if format YYYY-MM-DD is not respected
      * @apiNote : curl -d "family=XXX&given=XXXX&dob=YYYY-MM-DD&sex=F&address=XXX&phone=XXX" -X POST http://domain:port/patient/add
      */
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Patient> importFromUrl(PatientImportDto patientImportDto) throws DateFormatException {
-        return new ResponseEntity<>(patientService.add(patientMapper.patientImportDtoToPatient(patientImportDto)), HttpStatus.OK);
+    public ResponseEntity<Patient> createFromUrl(PatientUrlDto patientUrlDto) throws DateFormatException {
+        return new ResponseEntity<>(patientService.add(patientMapper.patientUrlDtoToPatient(patientUrlDto)), HttpStatus.OK);
     }
 
 
@@ -59,10 +60,11 @@ public class PatientController {
      * @throws DateFormatException if format YYYY-MM-DD is not respected
      * @apiNote curl -X POST http://domain:port/patient/insert
      * -H "Content-Type: application/json"
-     * -d "{\"lastName\": \"XX\",\"firstName\": \"XX\",\"birthdate\": \"YYYY-MM-DD\",\"address\": \"XX\",\"phone\": \"XX\"}"
+     * -d "{\"lastName\": \"XX\",\"firstName\": \"XX\",\"birthdate\": \"YYYY-MM-DD\",\"sex\": \"F\", \"address\": \"XX\",\"phone\": \"XX\"}"
      */
     @PostMapping(path="/insert")
-    public ResponseEntity<Patient> insert(@RequestBody PatientDto patientDto) throws DateFormatException {
+    public ResponseEntity<Patient> createFromBody(@RequestBody @Valid PatientDto patientDto) throws DateFormatException {
+        log.info(patientDto);
         return new ResponseEntity<>(patientService.add(patientMapper.patientDtoToPatient(patientDto)), HttpStatus.OK);
     }
 
@@ -96,10 +98,10 @@ public class PatientController {
      * @throws DateFormatException if format YYYY-MM-DD is not respected
      * @apiNote curl -X PUT http://domain:port/patient/update
      * -H "Content-Type: application/json"
-     * -d "{\"id\": 1,\"lastName\": \"XX\",\"firstName\": \"XX\",\"birthdate\": \"YYYY-MM-DD\",\"address\": \"XX\",\"phone\": \"XX\"}"
+     * -d "{\"lastName\": \"XX\",\"firstName\": \"XX\",\"birthdate\": \"YYYY-MM-DD\",\"sex\": \"F\", \"address\": \"XX\",\"phone\": \"XX\"}"
      */
     @PutMapping("/update")
-    public ResponseEntity<Patient> update(@RequestBody PatientDto patientDto) throws PatientNotFoundException, DateFormatException {
+    public ResponseEntity<Patient> update(@RequestBody @Valid PatientDto patientDto) throws PatientNotFoundException, DateFormatException {
         return new ResponseEntity<>(patientService.update(patientMapper.patientDtoToPatient(patientDto)), HttpStatus.OK);
     }
 

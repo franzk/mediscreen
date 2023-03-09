@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PatientImportDto {
+public class PatientUrlDto {
 
     private String family;
 

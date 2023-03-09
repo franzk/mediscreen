@@ -61,8 +61,17 @@ export class PatientFormComponent implements OnInit {
       this.patientService.addPatient(this.patientForm.value).pipe(
         tap(() => {
           this.router.navigate(['']);
+        }),
+        catchError(err => {
+          if (err.status === 400) {
+            this.validationError = err.error;
+            return of({});
+          }
+          else {
+            return throwError(() => err)
+          }
         })
-      ).subscribe()
+      ).subscribe();
     }
     else {
       this.patientService.updatePatient(this.id, this.patientForm.value).pipe(
@@ -70,7 +79,6 @@ export class PatientFormComponent implements OnInit {
           this.router.navigate(['patient', this.id]);
         }),
         catchError(err => {
-          console.log('kkk', err);
           if (err.status === 400) {
             this.validationError = err.error;
             return of({});

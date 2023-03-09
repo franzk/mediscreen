@@ -1,8 +1,9 @@
 <div *ngIf="patients$ | async as patients; else elseTemplate" class="patient col-md-6">
+  <a [routerLink]="['patient/add']" class="btn btn-primary">Ajouter un patient</a>
   <table >
     <thead>
       <tr>
-        <th colspan="5">Patients</th>
+        <th colspan="6">Patients</th>
       </tr>
       <tr>
         <th>Last Name</th>
@@ -23,7 +24,6 @@
       <td>{{ patient.phone }}</td>
     </tr>
   </table>
-  <a [routerLink]="['patient/add']" class="btn btn-primary">Ajouter un patient</a>
 </div>
 <ng-template #elseTemplate>
 Impossible de se connecter au serveur.
