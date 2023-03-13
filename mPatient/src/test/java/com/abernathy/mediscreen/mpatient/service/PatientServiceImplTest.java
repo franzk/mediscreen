@@ -36,10 +36,6 @@ class PatientServiceImplTest {
         verify(patientRepository, times(1)).save(patient);
     }
 
-//    MockedStatic<LocalDate> localDateMockedStatic = mockStatic(LocalDate.class) {
-//        when(LocalDate.parse(any())).thenReturn()
-//    };
-
     @Test
     void getByIdTest() throws PatientNotFoundException {
         // Arrange

@@ -58,6 +58,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, invalidDateFormatErrorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
+    /**
+     * Handle constraint violations
+     * @param ex Exception contains error messages
+     * @param headers
+     * @param status
+     * @param request
+     * @return  List<String> containing error messages relative with entity validity constraint violations
+     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<FieldError> errors = ex.getBindingResult().getFieldErrors();
