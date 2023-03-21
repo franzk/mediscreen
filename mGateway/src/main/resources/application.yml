@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: mediscreen-test
+          uri: lb://MEDISCREEN-TEST
+          predicates:
+              - Path=/test/**
+          filters:
+            - RewritePath=/test, /
+
+        - id: mediscreen-patient
+          uri: lb://MEDISCREEN-PATIENT
+          predicates:
+            - Path=/patient/**
+          #filters:
+          #  - AuthenticationFilter
+
+        - id: mediscreen-patient2
+          uri: lb://MEDISCREEN-PATIENT
+          predicates:
+            - Path=/aa/**
+          filters:
+            - RewritePath=/aa, /mm
+
+  application:
+    name: MEDISCREEN-GATEWAY
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/

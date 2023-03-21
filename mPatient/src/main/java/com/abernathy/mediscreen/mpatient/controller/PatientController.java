@@ -11,6 +11,7 @@ import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

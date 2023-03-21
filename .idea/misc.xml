@@ -5,7 +5,22 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/mPatient/pom.xml" />
+        <option value="$PROJECT_DIR$/mPatient/zuul-server/pom.xml" />
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/mAuthorization/pom.xml" />
+        <option value="$PROJECT_DIR$/mFeign/pom.xml" />
+        <option value="$PROJECT_DIR$/mNotes/pom.xml" />
+        <option value="$PROJECT_DIR$/mServer/pom.xml" />
+        <option value="$PROJECT_DIR$/mGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/mTest/pom.xml" />
+        <option value="$PROJECT_DIR$/mAuthentication/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="temurin-17" project-jdk-type="JavaSDK">

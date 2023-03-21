@@ -1,0 +1,17 @@
+
+{
+java:S1612H"^Replace this lambda with method reference 'DefaultMessageSourceResolvable::getDefaultMessage'.(¹¹þ¢8ªÉ³²ì0
+_
+java:S1128"CRemove this unused import 'jakarta.validation.ConstraintViolation'.(Â¢×)8û–Œ²ì0
+n
+java:S1128"LRemove this unused import 'jakarta.validation.ConstraintViolationException'.(¯–ƒùþÿÿÿÿ8ü–Œ²ì0
+l
+java:S1128"JRemove this unused import 'org.springframework.core.io.ClassPathResource'.(Ý¹º§ýÿÿÿÿ8ü–Œ²ì0
+r
+java:S1128"VRemove this unused import 'org.springframework.core.io.support.PropertiesLoaderUtils'.(šÖàp8ü–Œ²ì0
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8ü–Œ²ì0
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ý–Œ²ì0
+N
+java:S1128"1Remove this unused import 'java.util.Properties'.(¬µŽ²8ý–Œ²ì0

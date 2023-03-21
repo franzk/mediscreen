@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/aa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/apigateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/apigateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mApiGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mApiGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mAuthentication/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mAuthentication/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mAuthorization/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mAuthorization/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mNotes/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mNotes/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mPatient/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mPatient/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mProxy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mProxy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mServer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mTest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mTest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mZuulGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mZuulGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-server/src/main/resources" charset="UTF-8" />
   </component>
 </project>

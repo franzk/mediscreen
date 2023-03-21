@@ -1,13 +1,13 @@
-package com.abernathy.mediscreen.mpatient;
+package com.abernathy.mediscreen.mserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MPatientApplicationTests {
+class MediscreenServerApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
