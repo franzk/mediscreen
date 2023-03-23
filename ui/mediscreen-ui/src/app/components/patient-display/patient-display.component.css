@@ -1,5 +1,11 @@
-.patient {
-  margin: 5px;
-  padding: 5px;
-  border: 1px solid black;
+
+.note {
+  margin-bottom: 5px;
+}
+
+
+.topRight{ position:absolute; right:0px; top:0px;}
+
+.notes {
+  margin-top: 10px;
 }

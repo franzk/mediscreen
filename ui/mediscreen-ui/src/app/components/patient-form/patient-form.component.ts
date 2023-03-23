@@ -32,10 +32,8 @@ export class PatientFormComponent implements OnInit {
     });
 
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
-    this.isAddMode = !this.id;
 
-    console.log(this.isAddMode);
+    this.isAddMode = !this.id;
 
 
     if (!this.isAddMode) {   // in Edit Mode, let's get the user to delete

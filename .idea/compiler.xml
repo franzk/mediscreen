@@ -10,7 +10,6 @@
         <module name="mPatient" />
         <module name="mGateway" />
         <module name="mTest" />
-        <module name="mAuthorization" />
         <module name="mNotes" />
         <module name="mServer" />
         <module name="mAuthentication" />
@@ -20,6 +19,7 @@
       <module name="aa" target="17" />
       <module name="api-gateway" target="17" />
       <module name="mAa" target="17" />
+      <module name="mAuthorization" target="17" />
       <module name="mpatient" target="17" />
       <module name="mPatient (1)" target="17" />
       <module name="mPatient (2)" target="17" />

@@ -9,21 +9,23 @@ export class PatientService {
 
   constructor(private http: HttpClient) { }
 
+  serverUrl : string = "http://localhost:8081/patient/";
+
   public getPatients() {
-    return this.http.get<Patient[]>("http://localhost:8081/patient/");
+    return this.http.get<Patient[]>(this.serverUrl);
   }
 
   public getPatient(id: number) {
-    return this.http.get<Patient>("http://localhost:8081/patient/" + id);
+    return this.http.get<Patient>(this.serverUrl + id);
   }
 
   public updatePatient(id: number, patient: Patient) {
     patient.id = id;
-    return this.http.put<Patient>("http://localhost:8081/patient/update", patient);
+    return this.http.put<Patient>(this.serverUrl + "update", patient);
   }
 
   public addPatient(patient: Patient) {
-    return this.http.post<Patient>("http://localhost:8081/patient/insert", patient);
+    return this.http.post<Patient>(this.serverUrl + "insert", patient);
   }
 
 

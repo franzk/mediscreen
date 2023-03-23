@@ -1,13 +1,46 @@
-<a [routerLink]="['/']">Retour à la liste des patients</a>
-<div  *ngIf="patient$ | async as patient; else elseTemplate" class="patient col-md-6">
-  <p>{{ patient.lastName }}</p>
-  <p>{{ patient.firstName }}</p>
-  <p>{{ patient.birthdate }}</p>
-  <p>{{ patient.sex }}</p>
-  <p>{{ patient.address }}</p>
-  <p>{{ patient.phone }}</p>
-  <p><a [routerLink]="['/patient/edit', patient.id]" class="btn btn-primary">Edit</a></p>
+<a [routerLink]="['/']">< Retour à la liste des patients</a>
+
+<div  *ngIf="patient$ | async as patient; else elseTemplate" >
+
+  <div class="card border-light position-relative col-md-8 m-auto p-0">
+
+    <h3 class="card-header">Patient</h3>
+
+    <div class="card-body">
+
+    <h5 class="card-title">{{ patient.lastName }} {{ patient.firstName }}</h5>
+
+    <div class="topRight"> <a  [routerLink]="['/patient/edit', patient.id]" class="btn"><i class="bi bi-pencil"></i></a></div>
+
+
+      <p class="card-text">Birthdate : {{ patient.birthdate }}</p>
+      <p class="card-text">Sex : {{ patient.sex }}</p>
+      <p class="card-text"><i class="bi bi-house"></i> {{ patient.address }}</p>
+      <p class="card-text"><i class="bi bi-phone"></i> {{ patient.phone }}</p>
+    </div>
+  </div>
+
+
+  <div class="col-sm-10 notes mx-auto">
+
+    <app-note-form [patientId]="patient.id" (actionOK)="refreshNotes()"></app-note-form>
+
+    <div *ngIf="notes$ | async as notes;" class="mt-2">
+
+      <ng-container *ngIf="!notes.length" [ngTemplateOutlet]="noItems"></ng-container>
+      <ng-template #noItems><i>-- Aucune note --</i></ng-template>
+
+      <div *ngFor="let note of notes!" class="border note position-relative">
+        <app-note-form [patientId]="patient.id" [note]="note" (actionOK)="refreshNotes()"></app-note-form>
+      </div>
+    </div>
+
+  </div>
+
+
+
 </div>
+
 <ng-template #elseTemplate>
   <p>Impossible de trouver le patient.</p>
 </ng-template>

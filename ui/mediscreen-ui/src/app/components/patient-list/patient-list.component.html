@@ -1,28 +1,27 @@
-<div *ngIf="patients$ | async as patients; else elseTemplate" class="patient col-md-6">
-  <a [routerLink]="['patient/add']" class="btn btn-primary">Ajouter un patient</a>
-  <table >
+<div *ngIf="patients$ | async as patients; else elseTemplate" class="patient col-md-10 m-auto">
+  <a [routerLink]="['patient/add']" class="btn btn-primary mb-2"><i class="bi bi-person-plus"></i></a>
+  <table class="table">
     <thead>
       <tr>
-        <th colspan="6">Patients</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
       </tr>
-      <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Birthdate</th>
-        <th>Sex</th>
-        <th>Address</th>
-        <th>Phone</th>
-      </tr>
-
     </thead>
-    <tr *ngFor="let patient of patients!">
-      <td><a [routerLink]="['/patient', patient.id]">  {{ patient.lastName }}</a></td>
-      <td>{{ patient.firstName }} </td>
-      <td>{{ patient.birthdate }}</td>
-      <td>{{ patient.sex }}</td>
-      <td>{{ patient.address }}</td>
-      <td>{{ patient.phone }}</td>
-    </tr>
+
+    <tbody>
+      <tr *ngFor="let patient of patients!">
+        <td><a [routerLink]="['/patient', patient.id]">  {{ patient.lastName }}</a></td>
+        <td>{{ patient.firstName }} </td>
+        <td>{{ patient.birthdate }}</td>
+        <td>{{ patient.sex }}</td>
+        <td>{{ patient.address }}</td>
+        <td>{{ patient.phone }}</td>
+      </tr>
+  </tbody>
   </table>
 </div>
 <ng-template #elseTemplate>

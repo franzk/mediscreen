@@ -1,43 +1,32 @@
 package com.abernathy.mediscreen.mnotes.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.Collection;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Document(collection = "notes")
+@Getter
+@Setter
 public class Note {
 
     @Id
     private String id;
 
     @Field("patient_id")
-    private String patientId;
+    private Integer patientId;
 
+    @Field("creation_date")
+    private LocalDateTime creationDate = LocalDateTime.now();
+
+    @Field("last_update_date")
+    private LocalDateTime lastUpdateDate = LocalDateTime.now();
+
+    @Field("content")
     private String content;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }

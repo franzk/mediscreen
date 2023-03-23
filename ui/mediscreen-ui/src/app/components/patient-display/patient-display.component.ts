@@ -1,8 +1,10 @@
+import { NoteService } from './../../service/note.service';
 import { PatientService } from '../../service/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from 'src/app/model/patient';
 import { Observable } from 'rxjs';
+import { Note } from 'src/app/model/note';
 
 @Component({
   selector: 'app-display-patient',
@@ -12,12 +14,21 @@ import { Observable } from 'rxjs';
 export class PatientDisplayComponent implements OnInit {
 
   patient$!: Observable<Patient>;
+  notes$!: Observable<Note[]>;
+  id?: number;
 
-  constructor(private route: ActivatedRoute, private patientService: PatientService) { }
+  constructor(private route: ActivatedRoute,
+              private patientService: PatientService,
+              private noteService: NoteService) { }
 
   ngOnInit(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')?.toString()!);
-    this.patient$ = this.patientService.getPatient(id);
+    this.id = parseInt(this.route.snapshot.paramMap.get('id')?.toString()!);
+    this.patient$ = this.patientService.getPatient(this.id);
+    this.notes$ = this.noteService.getNotes(this.id);
+  }
+
+  refreshNotes() {
+    this.notes$ = this.noteService.getNotes(this.id!);
   }
 
 }

@@ -23,6 +23,20 @@ spring:
           filters:
             - RewritePath=/aa, /mm
 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+
+
+
+
   application:
     name: MEDISCREEN-GATEWAY
 

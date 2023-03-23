@@ -1,0 +1,15 @@
+<div class="card mx-auto p-2" [hidden]="!formVisible">
+  <form class="form-group mt-3" [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <textarea type="text" class="form-control" id="noteContent" formControlName="noteContent" placeholder="Type new note here ..." rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-danger" [hidden]="isAddMode" (click)="editMode(false)">Cancel</button>
+  </form>
+</div>
+<ng-container *ngIf="note">
+  <div class="topRight"><button class="btn" (click)="editMode(true)"><i class="bi bi-pencil"></i></button></div>
+  <p>{{ note.content }} </p>
+  <p class="note_date"> created : {{ note.creationDate }} / last update : {{ note.lastUpdateDate }}</p>
+</ng-container>
+

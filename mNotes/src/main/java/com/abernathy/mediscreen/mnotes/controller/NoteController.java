@@ -3,11 +3,16 @@ package com.abernathy.mediscreen.mnotes.controller;
 import com.abernathy.mediscreen.mnotes.exception.NoteNotFoundException;
 import com.abernathy.mediscreen.mnotes.model.Note;
 import com.abernathy.mediscreen.mnotes.service.NoteService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin
+@Log4j2
 public class NoteController {
 
     private final NoteService noteService;
@@ -22,7 +27,7 @@ public class NoteController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Note> getByPatientId(@RequestParam String patientId) throws NoteNotFoundException {
+    public ResponseEntity<List<Note>> getByPatientId(@RequestParam Integer patientId) throws NoteNotFoundException {
         return new ResponseEntity<>(noteService.getByPatientId(patientId), HttpStatus.OK);
     }
 
