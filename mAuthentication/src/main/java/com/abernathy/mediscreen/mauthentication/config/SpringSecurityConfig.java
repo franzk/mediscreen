@@ -21,9 +21,14 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        return http.cors().and().csrf().disable()
                 .userDetailsService(jpaUserDetailsService)
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+//                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+//                .exceptionHandling()
+//                .authenticationEntryPoint(new JwtAuthenticationEntryPoint()).and()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .addFilterBefore(new JwtTokenFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

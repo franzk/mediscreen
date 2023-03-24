@@ -1,6 +1,4 @@
-<a [routerLink]="['/']">< Retour à la liste des patients</a>
-
-<div  *ngIf="patient$ | async as patient; else elseTemplate" >
+<div  *ngIf="patient$ | async as patient; else elseTemplate" class="mt-2">
 
   <div class="card border-light position-relative col-md-8 m-auto p-0">
 

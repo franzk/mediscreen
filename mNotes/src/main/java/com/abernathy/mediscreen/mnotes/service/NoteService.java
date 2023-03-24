@@ -45,14 +45,6 @@ public class NoteService {
             throw new NoteNotFoundException();
         }
 
-
-//        if (noteRepository.findById(note.getId()).isEmpty()) {
-//            throw new NoteNotFoundException();
-//        }
-//        else {
-//            note.setLastUpdateDate(LocalDateTime.now());
-//            return noteRepository.save(note);
-//        }
     }
 
     public void deleteById(String id) {

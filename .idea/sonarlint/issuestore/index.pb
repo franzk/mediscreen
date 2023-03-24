@@ -159,8 +159,6 @@ G
 mAuthentication/pom.xml,7\f\7f94eddafe09be13bc6d3565dfd477639e047a04
 Ÿ
 omAuthentication/src/main/java/com/abernathy/mediscreen/mauthentication/MediscreenAuthenticationApplication.java,1\e\1e9d5c60a9bb4d00330c5b360e4e2013a396975d
-—
-gmAuthentication/src/main/java/com/abernathy/mediscreen/mauthentication/config/SpringSecurityConfig.java,c\3\c30eae1c8501938182db7cfb9cef39e52b91b9c8
 †
 VmAuthentication/src/main/java/com/abernathy/mediscreen/mauthentication/model/User.java,6\6\664b733946abf4fd88c3304f3bc25e8054bfa987
 •

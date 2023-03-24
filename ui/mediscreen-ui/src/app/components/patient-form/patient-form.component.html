@@ -1,13 +1,11 @@
-<a [routerLink]="['/']">Retour à la liste des patients</a>
 <ng-container *ngIf="notFoundError; else elseTemplate">
-  <p>Impossible de trouver le patient.</p>
+  <p>Patient not found !</p>
 </ng-container>
 <ng-template #elseTemplate>
-  <div class="card border-light position-relative col-md-8 m-auto p-0">
-    <h3 class="card-header">
-      <span *ngIf="isAddMode">Ajouter un patient</span>
-      <span *ngIf="!isAddMode">Modifier un patient</span>
-    </h3>
+  <div class="card border-light position-relative col-md-8 mx-auto p-0 mt-2">
+    <h5 class="card-header">
+      <span *ngIf="isAddMode">New patient</span>
+    </h5>
     <form class="col-md-8 form-group mt-3" [formGroup]="patientForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="lastName">Last name</label><input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Last name">
@@ -28,6 +26,7 @@
         <label for="address">Phone</label><input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Phone">
       </div>
       <button class="btn btn-primary">Save</button>
+      <button class="btn btn-danger" onclick="history.back()">Cancel</button>
     </form>
     <div *ngIf="validationError" class="text-danger">{{ validationError }}</div>
   </div>

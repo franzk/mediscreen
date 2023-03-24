@@ -1,6 +1,17 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+
       routes:
         - id: mediscreen-test
           uri: lb://MEDISCREEN-TEST
@@ -16,24 +27,13 @@ spring:
           #filters:
           #  - AuthenticationFilter
 
-        - id: mediscreen-patient2
-          uri: lb://MEDISCREEN-PATIENT
+        - id: mediscreen-notes
+          uri: lb://MEDISCREEN-NOTES
           predicates:
-            - Path=/aa/**
-          filters:
-            - RewritePath=/aa, /mm
+            - Path=/notes/**
 
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
 
 
 

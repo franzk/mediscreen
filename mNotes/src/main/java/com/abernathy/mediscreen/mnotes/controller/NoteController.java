@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
-@Log4j2
+//@CrossOrigin
+@RequestMapping("/notes")
 public class NoteController {
 
     private final NoteService noteService;
@@ -26,8 +26,8 @@ public class NoteController {
         return new ResponseEntity<>(noteService.add(note), HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<Note>> getByPatientId(@RequestParam Integer patientId) throws NoteNotFoundException {
+    @GetMapping("/{patientId}")
+    public ResponseEntity<List<Note>> getByPatientId(@PathVariable Integer patientId) {
         return new ResponseEntity<>(noteService.getByPatientId(patientId), HttpStatus.OK);
     }
 

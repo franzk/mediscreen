@@ -10,12 +10,10 @@ export class NoteService {
 
   constructor(private http:HttpClient) { }
 
-  serverUrl: string = "http://localhost:8082/";
+  serverUrl: string = "http://localhost:8080/notes/";
 
   public getNotes(patientId: number) {
-    let params = new HttpParams().set('patientId', patientId);
-    console.log(params);
-    return this.http.get<Note[]>(this.serverUrl, { params : params });
+    return this.http.get<Note[]>(this.serverUrl + patientId);
   }
 
   public addNote(note: Note) {
