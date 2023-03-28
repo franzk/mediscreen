@@ -4,7 +4,6 @@ import com.abernathy.mediscreen.mnotes.exception.NoteNotFoundException;
 import com.abernathy.mediscreen.mnotes.model.Note;
 import com.abernathy.mediscreen.mnotes.repository.NoteRepository;
 import lombok.extern.log4j.Log4j2;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -50,5 +49,8 @@ public class NoteService {
     public void deleteById(String id) {
         noteRepository.deleteById(id);
     }
+
+
+
 
 }

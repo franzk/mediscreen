@@ -10,6 +10,7 @@
         <module name="mPatient" />
         <module name="mGateway" />
         <module name="mTest" />
+        <module name="mAssessment" />
         <module name="mNotes" />
         <module name="mServer" />
         <module name="mAuthentication" />
@@ -32,6 +33,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="mAa" options="-parameters" />
+      <module name="mAssessment" options="-parameters" />
       <module name="mAuthentication" options="-parameters" />
       <module name="mAuthorization" options="-parameters" />
       <module name="mGateway" options="-parameters" />
