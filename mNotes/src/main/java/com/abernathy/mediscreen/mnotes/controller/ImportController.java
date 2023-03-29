@@ -11,9 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 @RestController
 @RequestMapping("/patHistory")
 @Log4j2
@@ -36,6 +33,7 @@ public class ImportController {
     public ResponseEntity<Note> importNote(@RequestParam MultiValueMap<String,String> paramMap) throws BadNoteImportRequestException {
 
         String data = paramMap.get("patId").get(0);
+        log.info(data);
 
         Note newNote = importNoteService.parseUrlData(data);
         return new ResponseEntity<>(noteService.add(newNote), HttpStatus.OK);

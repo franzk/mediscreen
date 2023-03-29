@@ -32,6 +32,11 @@ spring:
           predicates:
             - Path=/notes/**
 
+        - id: mediscreen-notes
+          uri: lb://MEDISCREEN-ASSESSMENT
+          predicates:
+            - Path=/assessment/***
+
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
 

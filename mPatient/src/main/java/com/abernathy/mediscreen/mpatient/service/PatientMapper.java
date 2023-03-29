@@ -1,8 +1,9 @@
 package com.abernathy.mediscreen.mpatient.service;
 
-import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
+import com.abernathy.mediscreen.mdto.exception.DateFormatException;
+import com.abernathy.mediscreen.mdto.service.DtoDateUtils;
 import com.abernathy.mediscreen.mpatient.model.Patient;
-import com.abernathy.mediscreen.mpatient.model.PatientDto;
+import com.abernathy.mediscreen.mdto.model.PatientDto;
 import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import org.springframework.stereotype.Service;
 
@@ -46,21 +47,25 @@ public class PatientMapper {
         patient.setLastName(patientDto.getLastName());
         patient.setFirstName(patientDto.getFirstName());
 
-        // Date
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        try {
-            LocalDate birthDate = LocalDate.parse(patientDto.getBirthdate(), formatter);
-            patient.setBirthdate(birthDate);
-        }
-        catch(DateTimeParseException exception) {
-            throw new DateFormatException();
-        }
+        patient.setBirthdate(DtoDateUtils.stringToDate(patientDto.getBirthdate()));
 
         patient.setSex(patientDto.getSex());
         patient.setAddress(patientDto.getAddress());
         patient.setPhone(patientDto.getPhone());
 
         return patient;
+    }
+
+    public PatientDto patientToPatientDto(Patient patient) {
+        PatientDto patientDto = new PatientDto();
+        patientDto.setId(patient.getId());
+        patientDto.setLastName(patient.getLastName());
+        patientDto.setFirstName(patient.getFirstName());
+        patientDto.setBirthdate(DtoDateUtils.dateToString(patient.getBirthdate()));
+        patientDto.setSex(patient.getSex());
+        patientDto.setAddress(patient.getAddress());
+        patientDto.setPhone(patient.getPhone());
+        return patientDto;
     }
 
 }

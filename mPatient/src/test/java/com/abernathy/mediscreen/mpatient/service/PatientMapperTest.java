@@ -1,7 +1,6 @@
 package com.abernathy.mediscreen.mpatient.service;
 
 import com.abernathy.mediscreen.mpatient.GenerateTestData;
-import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
 import com.abernathy.mediscreen.mpatient.model.PatientDto;
 import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;

@@ -1,5 +1,6 @@
 package com.abernathy.mediscreen.mpatient.exception;
 
+import com.abernathy.mediscreen.mdto.exception.DateFormatException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Value;

@@ -15,10 +15,16 @@
     <file url="file://$PROJECT_DIR$/mAuthentication/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mAuthorization/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mAuthorization/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mDto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mDto/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mEntity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mEntity/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mGateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mGateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mNotes/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mNotes/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mParent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mParent/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mPatient/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mPatient/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mProxy/src/main/java" charset="UTF-8" />
@@ -29,6 +35,8 @@
     <file url="file://$PROJECT_DIR$/mTest/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mZuulGateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mZuulGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-server/src/main/resources" charset="UTF-8" />
   </component>

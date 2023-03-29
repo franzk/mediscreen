@@ -1,9 +1,9 @@
 package com.abernathy.mediscreen.mpatient.controller;
 
-import com.abernathy.mediscreen.mpatient.exception.DateFormatException;
+import com.abernathy.mediscreen.mdto.exception.DateFormatException;
 import com.abernathy.mediscreen.mpatient.exception.PatientNotFoundException;
 import com.abernathy.mediscreen.mpatient.model.Patient;
-import com.abernathy.mediscreen.mpatient.model.PatientDto;
+import com.abernathy.mediscreen.mdto.model.PatientDto;
 import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import com.abernathy.mediscreen.mpatient.service.PatientMapper;
 import com.abernathy.mediscreen.mpatient.service.PatientService;
@@ -11,7 +11,6 @@ import com.abernathy.mediscreen.mpatient.service.PatientServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -87,8 +86,8 @@ public class PatientController {
      * @apiNote curl -X GET http://domain:port/patient/1
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> getById(@PathVariable Integer id) throws PatientNotFoundException {
-        return new ResponseEntity<>(patientService.getById(id), HttpStatus.OK);
+    public ResponseEntity<PatientDto> getById(@PathVariable Integer id) throws PatientNotFoundException {
+        return new ResponseEntity<>(patientMapper.patientToPatientDto(patientService.getById(id)), HttpStatus.OK);
     }
 
     /**
