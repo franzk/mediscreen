@@ -1,6 +1,7 @@
 package com.abernathy.mediscreen.massessment.controller;
 
 import com.abernathy.mediscreen.massessment.service.RiskLevelService;
+import com.abernathy.mediscreen.mdto.model.RiskLevelDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +24,7 @@ public class AssessmentController {
     }
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<String> riskLevel(@PathVariable Integer patientId) throws JsonProcessingException {
+    public ResponseEntity<RiskLevelDto> riskLevel(@PathVariable Integer patientId) throws JsonProcessingException {
         return new ResponseEntity<>(riskLevelService.riskLevel(patientId), HttpStatus.OK);
     }
 

@@ -146,8 +146,6 @@ gmAuthentication/src/main/java/com/abernathy/mediscreen/mauthentication/config/S
 „
 TmNotes/src/main/java/com/abernathy/mediscreen/mnotes/MediscreenNotesApplication.java,4\b\4bee3d44b329e150d15256d642ddaf32b32e7178
 ƒ
-SmNotes/src/main/java/com/abernathy/mediscreen/mnotes/controller/NoteController.java,b\6\b66f18c3f1ead6d8c5cb41f335cff64c92c9ae6c
-ƒ
 SmNotes/src/main/java/com/abernathy/mediscreen/mnotes/repository/NoteRepository.java,1\a\1a862ea77697e9df486977e6bc4feb4af4c1df9e
 t
 DmNotes/src/main/java/com/abernathy/mediscreen/mnotes/model/Note.java,b\6\b675ae6ec46ef250842a7d6708e3d526c5f5d989

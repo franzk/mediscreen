@@ -6,10 +6,13 @@
 
     <div class="card-body">
 
+      <div *ngIf="riskLevel$ | async as riskLevel;" class="text-right">
+        <span class="btn-{{riskLevel.color}}">{{ riskLevel.message }}</span>
+      </div>
+
     <h5 class="card-title">{{ patient.lastName }} {{ patient.firstName }}</h5>
 
     <div class="topRight"> <a  [routerLink]="['/patient/edit', patient.id]" class="btn"><i class="bi bi-pencil"></i></a></div>
-
 
       <p class="card-text">Birthdate : {{ patient.birthdate }}</p>
       <p class="card-text">Sex : {{ patient.sex }}</p>
@@ -32,11 +35,7 @@
         <app-note-form [patientId]="patient.id" [note]="note" (actionOK)="refreshNotes()"></app-note-form>
       </div>
     </div>
-
   </div>
-
-
-
 </div>
 
 <ng-template #elseTemplate>
