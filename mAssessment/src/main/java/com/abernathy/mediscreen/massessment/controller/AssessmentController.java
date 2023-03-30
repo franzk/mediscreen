@@ -19,7 +19,7 @@ public class AssessmentController {
     }
 
     @PostMapping(path =  "/id", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<String> assessment(@RequestBody Integer patId) throws JsonProcessingException {
+    public ResponseEntity<String> assessment(@RequestParam Integer patId) throws JsonProcessingException {
         return new ResponseEntity<>(riskLevelService.assessment(patId), HttpStatus.OK);
     }
 
