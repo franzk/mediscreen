@@ -1,50 +1,30 @@
 package com.abernathy.mediscreen.massessment.service;
 
-import com.abernathy.mediscreen.massessment.model.TriggersCountResult;
-import com.abernathy.mediscreen.massessment.repository.AssessmentRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.client.AggregateIterable;
-import org.bson.Document;
+import com.abernathy.mediscreen.massessment.proxy.AssessmentProxy;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@PropertySource("classpath:triggers.properties")
 public class TriggersCountService {
+    private final AssessmentProxy assessmentProxy;
 
-    private final AssessmentRepository assessmentRepository;
-
-    private final TriggersService triggersService;
-
-    public TriggersCountService(AssessmentRepository assessmentRepository, TriggersService triggersService) {
-        this.assessmentRepository = assessmentRepository;
-        this.triggersService = triggersService;
+    public TriggersCountService(AssessmentProxy assessmentProxy) {
+        this.assessmentProxy = assessmentProxy;
     }
 
+    @Value("#{${triggers}}")
+    private List<String> triggersList;
 
-    /**
-     *
-     * @param patientId
-     * @return
-     * @throws JsonProcessingException
-     */
-    public Integer countTriggers(Integer patientId) throws JsonProcessingException {
+    public int getTriggersCount(int patientId) {
 
-        String triggersRegex = triggersService.buildTriggersRegex();
+        String regex = triggersList.stream().collect(Collectors.joining("|", "(", ")")); // "(s1|s2|s3|...)"
+        regex += "(?i)"; // case insensitive
 
-        AggregateIterable<Document> result = assessmentRepository.getTriggersCountAggregationQueryResult(patientId, triggersRegex);
-
-        if (result.into(new ArrayList<>()).isEmpty()) {
-            return 0;
-        }
-        else {
-            ObjectMapper mapper = new ObjectMapper();
-            String rr = Objects.requireNonNull(result.first()).toJson();
-            TriggersCountResult r = mapper.readValue(rr, TriggersCountResult.class);
-
-            return r.getTotal();
-        }
+        return assessmentProxy.getTriggersCount(patientId, regex);
     }
 }

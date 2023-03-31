@@ -23,30 +23,23 @@ public class RiskLevelService {
         this.patientProxy = patientProxy;
     }
 
-
-
-//    private static final String LEVEL_0 = "None";
-//    private static final String LEVEL_1 = "Borderline";
-//    private static final String LEVEL_2 = "In Danger";
-//    private static final String LEVEL_3 = "Early onset";
-
     public String assessment(int patientId) throws JsonProcessingException {
 
         PatientDto patient = patientProxy.getPatientById(patientId);
         int patientAge = this.calculateAge(patient.getBirthdate());
 
-        String riskLevelMessage = this.riskLevel(patientId, patientAge, patient.getSex()).getMessage();
+        String riskLevelMessage = this.calculateRiskLevel(patientId, patientAge, patient.getSex()).getMessage();
 
         return String.format("%s %s (age %d) diabetes assessment is: %s",
                 patient.getLastName(), patient.getFirstName(), patientAge, riskLevelMessage);
 
     }
 
-    public RiskLevelDto riskLevel(int patientId) throws JsonProcessingException {
+    public RiskLevelDto calculateRiskLevel(int patientId) throws JsonProcessingException {
         PatientDto patient = patientProxy.getPatientById(patientId);
         int patientAge = this.calculateAge(patient.getBirthdate());
 
-        RiskLevel patientRiskLevel = this.riskLevel(patientId, patientAge, patient.getSex());
+        RiskLevel patientRiskLevel = this.calculateRiskLevel(patientId, patientAge, patient.getSex());
 
         RiskLevelDto riskLevelDto = new RiskLevelDto();
         riskLevelDto.setValue(patientRiskLevel.getValue());
@@ -56,9 +49,9 @@ public class RiskLevelService {
 
     }
 
-    private RiskLevel riskLevel(int patientId, int patientAge, String patientSex) throws JsonProcessingException {
+    private RiskLevel calculateRiskLevel(int patientId, int patientAge, String patientSex) throws JsonProcessingException {
 
-        int triggersCount = triggersCountService.countTriggers(patientId);
+        int triggersCount = triggersCountService.getTriggersCount(patientId);
 
         if (patientAge >= 30) {
             if (triggersCount >= 8) {

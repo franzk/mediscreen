@@ -24,18 +24,27 @@ spring:
           uri: lb://MEDISCREEN-PATIENT
           predicates:
             - Path=/patient/**
-          #filters:
-          #  - AuthenticationFilter
+          filters:
+            - AuthenticationFilter
 
         - id: mediscreen-notes
           uri: lb://MEDISCREEN-NOTES
           predicates:
             - Path=/notes/**
+          filters:
+            - AuthenticationFilter
 
         - id: mediscreen-notes
           uri: lb://MEDISCREEN-ASSESSMENT
           predicates:
             - Path=/assess/**
+          filters:
+            - AuthenticationFilter
+
+        - id: mediscreen-authentication
+          uri: lb://MEDISCREEN-AUTHENTICATION
+          predicates:
+            - Path=/auth/**
 
   application:
     name: MEDISCREEN-GATEWAY

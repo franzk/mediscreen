@@ -25,7 +25,7 @@ public class AssessmentController {
 
     @GetMapping("/{patientId}")
     public ResponseEntity<RiskLevelDto> riskLevel(@PathVariable Integer patientId) throws JsonProcessingException {
-        return new ResponseEntity<>(riskLevelService.riskLevel(patientId), HttpStatus.OK);
+        return new ResponseEntity<>(riskLevelService.calculateRiskLevel(patientId), HttpStatus.OK);
     }
 
 }
