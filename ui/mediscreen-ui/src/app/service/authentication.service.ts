@@ -56,7 +56,7 @@ export class AuthenticationService {
 
   public register(_username: string, _password: string) {
     let credentials = { username: _username, password: _password};
-    return this.httpClient.post<string>(this.serverUrl + "register", credentials);
+    return this.httpClient.post(this.serverUrl + "register", credentials, {responseType: 'text'});
   }
 
 }

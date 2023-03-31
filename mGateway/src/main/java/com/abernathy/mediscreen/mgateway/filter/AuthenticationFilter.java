@@ -1,6 +1,5 @@
 package com.abernathy.mediscreen.mgateway.filter;
 
-import com.abernathy.mediscreen.mgateway.RouteValidator;
 import com.abernathy.mediscreen.mgateway.service.JwtService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -14,13 +13,10 @@ import org.springframework.stereotype.Component;
 @Log4j2
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
 
-    private final RouteValidator routeValidator;
     private final JwtService jwtService;
 
-
-    public AuthenticationFilter(RouteValidator routeValidator, JwtService jwtService) {
+    public AuthenticationFilter(JwtService jwtService) {
         super(Config.class);
-        this.routeValidator = routeValidator;
         this.jwtService = jwtService;
     }
 

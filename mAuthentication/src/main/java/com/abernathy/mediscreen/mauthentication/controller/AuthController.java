@@ -2,8 +2,6 @@ package com.abernathy.mediscreen.mauthentication.controller;
 
 import com.abernathy.mediscreen.mauthentication.dto.AuthRequestDto;
 import com.abernathy.mediscreen.mauthentication.dto.AuthTokenDto;
-import com.abernathy.mediscreen.mauthentication.dto.MessageDto;
-import com.abernathy.mediscreen.mauthentication.model.User;
 import com.abernathy.mediscreen.mauthentication.service.AuthService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -27,11 +25,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<MessageDto> addNewUser(@RequestBody AuthRequestDto authRequestDto) {
+    public String addNewUser(@RequestBody AuthRequestDto authRequestDto) {
         log.info("register new user :" + authRequestDto.getUsername());
-        MessageDto messageDto = new MessageDto();
-        messageDto.setMessage(authService.createUser(authRequestDto));
-        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+        return authService.createUser(authRequestDto);
     }
 
     @PostMapping("/token")
