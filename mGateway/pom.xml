@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mediscreen-gateway</name>
 	<description>Mediscreen App Gateway</description>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>

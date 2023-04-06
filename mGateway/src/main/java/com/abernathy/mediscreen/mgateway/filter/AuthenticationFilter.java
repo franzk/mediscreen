@@ -27,26 +27,24 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
             log.info("authentication filter" + request);
 
-           // if (routeValidator.isSecured.test(request)) {
-                //header contains token or not
-                if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    throw new RuntimeException("missing authorization header");
-                }
+            //header contains token or not
+            if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+                throw new RuntimeException("missing authorization header");
+            }
 
-                String authHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-                if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                    authHeader = authHeader.substring(7);
-                }
+            String authHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                authHeader = authHeader.substring(7);
+            }
 
-                log.info(authHeader);
+            log.info(authHeader);
 
-                try {
-                    jwtService.validateToken(authHeader);
-                } catch (Exception e) {
-                    throw new RuntimeException("Unauthorized !");
-                }
+            try {
+                jwtService.validateToken(authHeader);
+            } catch (Exception e) {
+                throw new RuntimeException("Unauthorized !");
+            }
 
-            //}
             return chain.filter(exchange);
         });
     }

@@ -46,10 +46,10 @@ spring:
           predicates:
             - Path=/auth/**
 
-  application:
-    name: MEDISCREEN-GATEWAY
+  #application:
+  #  name: MEDISCREEN-GATEWAY
 
-eureka:
-  client:
-    service-url:
-      defaultZone : http://localhost:8761/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone : http://localhost:8761/eureka/

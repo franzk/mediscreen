@@ -1,7 +1,6 @@
 package com.abernathy.mediscreen.mnotes.service;
 
 import com.abernathy.mediscreen.mnotes.repository.AssessmentRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 
 @Service

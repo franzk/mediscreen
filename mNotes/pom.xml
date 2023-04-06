@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mediscreen-notes</name>
 	<description>Mediscreen App Notes service</description>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>

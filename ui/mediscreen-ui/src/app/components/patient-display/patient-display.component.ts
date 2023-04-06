@@ -5,7 +5,7 @@ import { PatientService } from '../../service/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from 'src/app/model/patient';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Note } from 'src/app/model/note';
 
 @Component({

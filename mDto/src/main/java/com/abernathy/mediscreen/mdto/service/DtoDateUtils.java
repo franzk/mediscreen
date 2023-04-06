@@ -8,6 +8,10 @@ import java.time.format.DateTimeParseException;
 
 public class DtoDateUtils {
 
+    private DtoDateUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static LocalDate stringToDate(String strDate) throws DateFormatException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {

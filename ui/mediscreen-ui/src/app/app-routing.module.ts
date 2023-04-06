@@ -1,6 +1,5 @@
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
-import { NoteFormComponent } from './components/note-form/note-form.component';
 import { PatientDisplayComponent } from './components/patient-display/patient-display.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

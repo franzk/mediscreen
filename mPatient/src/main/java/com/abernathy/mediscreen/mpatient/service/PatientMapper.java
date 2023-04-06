@@ -1,9 +1,9 @@
 package com.abernathy.mediscreen.mpatient.service;
 
 import com.abernathy.mediscreen.mdto.exception.DateFormatException;
+import com.abernathy.mediscreen.mdto.model.PatientDto;
 import com.abernathy.mediscreen.mdto.service.DtoDateUtils;
 import com.abernathy.mediscreen.mpatient.model.Patient;
-import com.abernathy.mediscreen.mdto.model.PatientDto;
 import com.abernathy.mediscreen.mpatient.model.PatientUrlDto;
 import org.springframework.stereotype.Service;
 

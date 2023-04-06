@@ -1,5 +1,5 @@
 <header class="col-* border">
-  <a [routerLink]="['/']"><img src="assets/logo.png" ></a>
+  <a [routerLink]="['/']"><img src="./assets/logo.png" ></a>
   <div *ngIf="authenticationService.isConnected$ | async" class="float-right mt-1 mr-1">
     <button class="btn btn-light" (click)="logout()">Log out !</button>
   </div>

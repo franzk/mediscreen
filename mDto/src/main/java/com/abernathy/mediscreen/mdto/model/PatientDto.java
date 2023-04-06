@@ -10,15 +10,16 @@ public class PatientDto {
 
     Integer id;
 
-    @NotEmpty(message = "{patientdto.lastname.notempty}")
+    @NotEmpty(message = "aa")
     private String lastName;
 
-    @NotEmpty(message = "{patientdto.firstname.notempty}")
+    @NotEmpty(message = "aa")
     private String firstName;
 
-    @NotEmpty(message = "{patientdto.birthdate.notempty}")
+    @NotEmpty(message = "aa")
     private String birthdate;
 
+    @NotEmpty(message = "aa")
     private String sex;
 
     private String address;

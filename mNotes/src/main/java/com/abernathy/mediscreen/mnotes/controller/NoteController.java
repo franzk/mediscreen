@@ -3,7 +3,6 @@ package com.abernathy.mediscreen.mnotes.controller;
 import com.abernathy.mediscreen.mnotes.exception.NoteNotFoundException;
 import com.abernathy.mediscreen.mnotes.model.Note;
 import com.abernathy.mediscreen.mnotes.service.NoteService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

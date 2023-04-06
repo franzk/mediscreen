@@ -12,11 +12,11 @@
         <option value="$PROJECT_DIR$/mNotes/pom.xml" />
         <option value="$PROJECT_DIR$/mServer/pom.xml" />
         <option value="$PROJECT_DIR$/mGateway/pom.xml" />
-        <option value="$PROJECT_DIR$/mTest/pom.xml" />
         <option value="$PROJECT_DIR$/mAuthentication/pom.xml" />
         <option value="$PROJECT_DIR$/mAssessment/pom.xml" />
         <option value="$PROJECT_DIR$/mParent/pom.xml" />
-        <option value="$PROJECT_DIR$/mDto/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/mDto2/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

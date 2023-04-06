@@ -10,7 +10,6 @@
         <module name="mDto" />
         <module name="mPatient" />
         <module name="mGateway" />
-        <module name="mTest" />
         <module name="mAssessment" />
         <module name="mNotes" />
         <module name="mServer" />
@@ -20,14 +19,21 @@
     <bytecodeTargetLevel>
       <module name="aa" target="17" />
       <module name="api-gateway" target="17" />
+      <module name="mA" target="17" />
       <module name="mAa" target="17" />
+      <module name="mAssessment2" target="17" />
       <module name="mAuthorization" target="17" />
+      <module name="mB" target="17" />
+      <module name="mdto" target="17" />
+      <module name="mDto2" target="17" />
+      <module name="mDto3" target="17" />
       <module name="mEntity" target="17" />
       <module name="mParent" target="17" />
       <module name="mpatient" target="17" />
       <module name="mPatient (1)" target="17" />
       <module name="mPatient (2)" target="17" />
       <module name="mProxy" target="17" />
+      <module name="mTest" target="17" />
       <module name="mZuulGateway" target="17" />
       <module name="zuul-server" target="17" />
     </bytecodeTargetLevel>
@@ -35,11 +41,16 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
+      <module name="mA" options="-parameters" />
       <module name="mAa" options="-parameters" />
       <module name="mAssessment" options="-parameters" />
+      <module name="mAssessment2" options="-parameters" />
       <module name="mAuthentication" options="-parameters" />
       <module name="mAuthorization" options="-parameters" />
+      <module name="mB" options="-parameters" />
       <module name="mDto" options="-parameters" />
+      <module name="mDto2" options="-parameters" />
+      <module name="mDto3" options="-parameters" />
       <module name="mGateway" options="-parameters" />
       <module name="mNotes" options="-parameters" />
       <module name="mParent" options="" />
@@ -50,6 +61,7 @@
       <module name="mServer" options="-parameters" />
       <module name="mTest" options="-parameters" />
       <module name="mZuulGateway" options="-parameters" />
+      <module name="mdto" options="-parameters" />
       <module name="mpatient" options="-parameters" />
       <module name="zuul-server" options="-parameters" />
     </option>

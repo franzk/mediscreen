@@ -5,7 +5,6 @@ import com.abernathy.mediscreen.mdto.exception.DateFormatException;
 import com.abernathy.mediscreen.mdto.model.PatientDto;
 import com.abernathy.mediscreen.mdto.model.RiskLevelDto;
 import com.abernathy.mediscreen.mdto.service.DtoDateUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,7 +22,7 @@ public class RiskLevelService {
         this.patientProxy = patientProxy;
     }
 
-    public String assessment(int patientId) throws JsonProcessingException {
+    public String assessment(int patientId) {
 
         PatientDto patient = patientProxy.getPatientById(patientId);
         int patientAge = this.calculateAge(patient.getBirthdate());
@@ -35,7 +34,7 @@ public class RiskLevelService {
 
     }
 
-    public RiskLevelDto calculateRiskLevel(int patientId) throws JsonProcessingException {
+    public RiskLevelDto calculateRiskLevel(int patientId) {
         PatientDto patient = patientProxy.getPatientById(patientId);
         int patientAge = this.calculateAge(patient.getBirthdate());
 
@@ -49,7 +48,7 @@ public class RiskLevelService {
 
     }
 
-    private RiskLevel calculateRiskLevel(int patientId, int patientAge, String patientSex) throws JsonProcessingException {
+    private RiskLevel calculateRiskLevel(int patientId, int patientAge, String patientSex) {
 
         int triggersCount = triggersCountService.getTriggersCount(patientId);
 

@@ -1,7 +1,6 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { NoteService } from './../../service/note.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Note } from 'src/app/model/note';
 

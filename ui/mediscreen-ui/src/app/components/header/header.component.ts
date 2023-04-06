@@ -1,6 +1,5 @@
 import { AuthenticationService } from './../../service/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-header',

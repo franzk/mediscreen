@@ -26,12 +26,13 @@
     </properties>
 
     <modules>
+        <module>mDto</module>
         <module>mAssessment</module>
+        <module>mPatient</module>
         <module>mGateway</module>
         <module>mNotes</module>
-        <module>mPatient</module>
         <module>mServer</module>
-        <module>mDto</module>
+        <module>mAuthentication</module>
     </modules>
 
     <dependencies>

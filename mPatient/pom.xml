@@ -38,6 +38,7 @@
             <groupId>com.abernathy.mediscreen</groupId>
             <artifactId>mDto</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
 
