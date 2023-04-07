@@ -3,9 +3,9 @@ import { AssessmentService } from './../../service/assessment.service';
 import { NoteService } from './../../service/note.service';
 import { PatientService } from '../../service/patient.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from 'src/app/model/patient';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Note } from 'src/app/model/note';
 
 @Component({
@@ -23,7 +23,8 @@ export class PatientDisplayComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private patientService: PatientService,
               private noteService: NoteService,
-              private assessmentService: AssessmentService) { }
+              private assessmentService: AssessmentService,
+              private router: Router) { }
 
   ngOnInit(): void {
     console.log("hey");
@@ -36,6 +37,14 @@ export class PatientDisplayComponent implements OnInit {
   refreshNotes() {
     this.notes$ = this.noteService.getNotes(this.id!);
     this.riskLevel$ = this.assessmentService.getRiskLevel(this.id!);
+  }
+
+  deletePatient() {
+    this.patientService.deletePatient(this.id!).pipe(
+      tap(() => {
+        this.router.navigateByUrl('/');
+      })
+    ).subscribe();
   }
 
 }

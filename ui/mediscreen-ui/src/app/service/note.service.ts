@@ -24,6 +24,10 @@ export class NoteService {
     return this.http.put(this.serverUrl, note);
   }
 
+  public deleteNote(note: Note) {
+    return this.http.delete(this.serverUrl + note.id, {responseType: 'text'});
+  }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.abernathy.mediscreen.mnotes.controller;
 import com.abernathy.mediscreen.mnotes.exception.NoteNotFoundException;
 import com.abernathy.mediscreen.mnotes.model.Note;
 import com.abernathy.mediscreen.mnotes.service.NoteService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/notes")
+@Log4j2
 public class NoteController {
 
     private final NoteService noteService;
@@ -34,8 +36,9 @@ public class NoteController {
         return new ResponseEntity<>(noteService.update(note), HttpStatus.OK);
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteById(@RequestParam String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable String id) {
+        log.info("Delete Note : " + id);
         noteService.deleteById(id);
         return new ResponseEntity<>("Note deleted", HttpStatus.OK);
     }

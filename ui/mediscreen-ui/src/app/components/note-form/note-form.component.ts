@@ -64,5 +64,16 @@ export class NoteFormComponent implements OnInit {
     this.formVisible = activated;
   }
 
+  deleteNote() {
+    console.log("dd");
+    console.log('delete note :' + this.note!.id);
+    this.noteService.deleteNote(this.note!).pipe(
+      tap(() => {
+        this.actionOK.emit();
+      })
+    ).subscribe();
+
+  }
+
 
 }

@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log('http interceptor');
+    console.log('http interceptor ' + req.url + ' - ' + req.method);
 
     let authHeaderValue = 'Bearer ' + this.authenticationService.getToken();
     console.log(authHeaderValue);

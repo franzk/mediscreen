@@ -12,7 +12,12 @@
 
     <h5 class="card-title">{{ patient.lastName }} {{ patient.firstName }}</h5>
 
-    <div class="topRight"> <a  [routerLink]="['/patient/edit', patient.id]" class="btn"><i class="bi bi-pencil"></i></a></div>
+    <div class="topRight">
+      <a  [routerLink]="['/patient/edit', patient.id]" class="btn"><i class="bi bi-pencil"></i></a>
+      <a class="mr-2 clickable_icon" (click)="deletePatient()"><i class="bi bi-trash"></i></a>
+    </div>
+
+    <!--div class="topRight"> <a  [routerLink]="['/patient/edit', patient.id]" class="btn"><i class="bi bi-pencil"></i></a></!--div-->
 
       <p class="card-text">Birthdate : {{ patient.birthdate }}</p>
       <p class="card-text">Sex : {{ patient.sex }}</p>

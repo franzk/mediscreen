@@ -28,5 +28,9 @@ export class PatientService {
     return this.http.post<Patient>(this.serverUrl + "insert", patient);
   }
 
+  public deletePatient(patientId: number) {
+    return this.http.delete(this.serverUrl + "delete/" + patientId, {responseType: 'text'});
+  }
+
 
 }

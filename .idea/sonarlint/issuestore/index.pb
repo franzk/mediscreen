@@ -1,8 +1,6 @@
 
 ‰
 YmNotes/src/main/java/com/abernathy/mediscreen/mnotes/exception/NoteNotFoundException.java,8\2\826c17eba105486b1c5a7426fffe5e7af392a8d3
-ƒ
-SmNotes/src/main/java/com/abernathy/mediscreen/mnotes/controller/NoteController.java,b\6\b66f18c3f1ead6d8c5cb41f335cff64c92c9ae6c
 ‰
 YmNotes/src/test/java/com/abernathy/mediscreen/mnotes/MediscreenNotesApplicationTests.java,5\2\522f7a4db3823a72f3c11b82e36b6f9d019c027d
 \
