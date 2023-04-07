@@ -5,10 +5,10 @@ public enum RiskLevel {
     LEVEL_1(1, "Borderline"),
     LEVEL_2(2, "In Danger"),
     LEVEL_3(3, "Early onset");
-    private int value;
-    private String message;
+    private final int value;
+    private final String message;
 
-    private RiskLevel(int value, String message) {
+    RiskLevel(int value, String message) {
         this.value = value;
         this.message = message;
     }

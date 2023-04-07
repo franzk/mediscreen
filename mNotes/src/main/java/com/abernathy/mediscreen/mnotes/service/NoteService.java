@@ -31,8 +31,6 @@ public class NoteService {
     public Note update(Note note) throws NoteNotFoundException {
 
         String id = note.getId();
-
-        log.info(id);
         Optional<Note> noteToUpdate = noteRepository.findById(id);
 
         if (noteToUpdate.isPresent()) {
@@ -48,8 +46,5 @@ public class NoteService {
     public void deleteById(String id) {
         noteRepository.deleteById(id);
     }
-
-
-
 
 }

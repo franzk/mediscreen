@@ -1,17 +1,15 @@
 version: '3'
 services:
+
   eureka-server:
     build: ./mServer
+    restart: always
     ports:
       - "8761:8761"
-    restart: always
 
   mysqldb:
     image: mysql
     restart: always
-    env_file:
-      - .env
-
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
@@ -24,17 +22,17 @@ services:
 
   patient:
     build: ./mPatient
+    restart: always
     depends_on:
       - eureka-server
       - mysqldb
     ports:
       - "8081:8081"
-    restart: always
-
     environment:
       - spring.datasource.url=jdbc:mysql://mysqldb:3306/${MYSQL_DATABASE}
       - spring.datasource.username=${MYSQL_USER}
       - spring.datasource.password=${MYSQL_PASSWORD}
+      - spring.profiles.active=prod
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
 
   notes:
@@ -68,25 +66,25 @@ services:
     build: ./ui/mediscreen-ui
     ports:
       - "4200:80"
-    container_name: mediscreen-ui
 
   authentication:
     build: ./mAuthentication
+    restart: always
     depends_on:
       - eureka-server
       - mysqldb
     ports:
       - "8085:8085"
-    restart: always
-
     environment:
       - spring.datasource.url=jdbc:mysql://mysqldb:3306/${MYSQL_DATABASE}
       - spring.datasource.username=${MYSQL_USER}
       - spring.datasource.password=${MYSQL_PASSWORD}
+      - spring.profiles.active=prod
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
 
   gateway:
     build: ./mGateway
+    restart: always
     depends_on:
       - eureka-server
       - patient
@@ -95,7 +93,3 @@ services:
       - "8080:8080"
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
-
-
-volumes:
-  mediscreen-data:

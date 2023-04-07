@@ -14,6 +14,7 @@ import { NoteFormComponent } from './components/note-form/note-form.component';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ErrorInterceptor } from './interceptor/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RegistrationComponent } from './components/registration/registration.co
   ],
   providers: [
      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
      AuthGard
   ],
   bootstrap: [AppComponent]

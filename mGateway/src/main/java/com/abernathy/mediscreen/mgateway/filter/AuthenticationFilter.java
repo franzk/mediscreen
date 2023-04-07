@@ -1,6 +1,7 @@
 package com.abernathy.mediscreen.mgateway.filter;
 
 import com.abernathy.mediscreen.mgateway.service.JwtService;
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -25,11 +26,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
         return ((exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
 
-            log.info("authentication filter" + request);
-
             //header contains token or not
             if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                throw new RuntimeException("missing authorization header");
+                throw new RuntimeException("Missing authorization header !");
             }
 
             String authHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
@@ -37,12 +36,10 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 authHeader = authHeader.substring(7);
             }
 
-            log.info(authHeader);
-
             try {
                 jwtService.validateToken(authHeader);
             } catch (Exception e) {
-                throw new RuntimeException("Unauthorized !");
+                throw new RuntimeException(e.getMessage());
             }
 
             return chain.filter(exchange);

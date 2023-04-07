@@ -8,5 +8,18 @@ Le back office, créé avec _Spring Boot_ est divisée en plusieurs _microservic
 
 ## Installation 
 - Cloner ce repository : git clone https://github.com/franzk/mediscreen.git
+  
 
-- ajoutez les fichiers de propriétés du module mPatient : [README de mPatient](mPatient%2FREADME.md#installation)
+- Créer une base de données MySQL et adapter les fichiers de configuration :
+  - [application-dev.properties](mPatient%2Fsrc%2Fmain%2Fresources%2Fapplication-dev.properties) (mPatient)
+  - [application-test.properties](mPatient%2Fsrc%2Fmain%2Fresources%2Fapplication-test.properties) (mPatient)
+  - [application.properties](mAuthentication%2Fsrc%2Fmain%2Fresources%2Fapplication.properties) (mAuthentication)
+  
+
+- Créer unhe base de données MongoDB et adapter les fichiers de configuration :
+  - [application.properties](mNotes%2Fsrc%2Fmain%2Fresources%2Fapplication.properties) (mNotes)
+  - [application.properties](mAssessment%2Fsrc%2Fmain%2Fresources%2Fapplication.properties) (mAssessment)
+
+### /!\ Could Gateway
+Lorsqu'un service est lancé ultérieurement au service mGateway, il faudra rafraichir les routes du gateway manuellement grâce à la commande :  
+curl --location --request POST 'http://localhost:8080/actuator/gateway/refresh'

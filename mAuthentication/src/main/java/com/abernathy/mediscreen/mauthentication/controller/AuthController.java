@@ -7,17 +7,20 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
+import com.abernathy.mediscreen.mauthentication.exception.*;
 
 @RestController
 @RequestMapping("/auth")
 @Log4j2
 public class AuthController {
 
-    private AuthService authService;
-    private AuthenticationManager authenticationManager;
+    private final AuthService authService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthController(AuthService authService, AuthenticationManager authenticationManager) {
         this.authService = authService;
@@ -25,37 +28,33 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody AuthRequestDto authRequestDto) {
-        log.info("register new user :" + authRequestDto.getUsername());
-        return authService.createUser(authRequestDto);
+    public ResponseEntity<String> addNewUser(@RequestBody AuthRequestDto authRequestDto) throws UserAlreadyExistsException {
+        log.info("Start registering new user :" + authRequestDto.getUsername());
+
+        return new ResponseEntity<>(authService.createUser(authRequestDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/token")
-    public ResponseEntity<AuthTokenDto> getToken(@RequestBody AuthRequestDto authRequestDto) {
-        log.info("getToken : " + authRequestDto.toString());
+    public ResponseEntity<AuthTokenDto> getToken(@RequestBody AuthRequestDto authRequestDto) throws InvalidAccessException {
+        log.info("Token requested for : " + authRequestDto.getUsername());
 
         String username = authRequestDto.getUsername();
         String password = authRequestDto.getPassword();
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+
         Authentication authentication = authenticationManager.authenticate(token);
-        log.info("ok ? : " + authentication.isAuthenticated());
         if (authentication.isAuthenticated()) {
             return new ResponseEntity<>(authService.generateToken(authRequestDto.getUsername()), HttpStatus.OK);
         } else {
-            throw new RuntimeException("invalid access");
+            throw new InvalidAccessException();
         }
-
-    }
-
-    @GetMapping("/")
-    public String home() {
-        return "Hello there !";
     }
 
     @GetMapping("/validate")
-    public String validateToken(@RequestParam("token") String token) {
+    public ResponseEntity<String> validateToken(@RequestParam("token") String token) {
+        log.info("Start Token validation : token");
         authService.validateToken(token);
-        return "Token is valid";
+        return new ResponseEntity<>("Token is valid", HttpStatus.ACCEPTED);
     }
 
 

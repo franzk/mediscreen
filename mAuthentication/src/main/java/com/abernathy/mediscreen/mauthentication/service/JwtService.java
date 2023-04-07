@@ -28,7 +28,6 @@ public class JwtService {
 
     public String generateToken(String userName) {
         Map<String, Object> claims = new HashMap<>();
-        log.info("auth - jwtservice / generatetoken / " + userName);
         return createToken(claims, userName);
     }
 
@@ -37,7 +36,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 /** 60 * 30*/)) // Token valid 30 minutes
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 

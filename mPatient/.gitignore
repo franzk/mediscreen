@@ -1,6 +1,3 @@
-/src/main/resources/application-prod.properties
-/src/main/resources/application-test.properties
-
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

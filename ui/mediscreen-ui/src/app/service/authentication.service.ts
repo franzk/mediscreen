@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { EMPTY, Observable, catchError, of, tap, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthToken } from '../model/authToken';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthenticationService {
 
   serverUrl: string = "http://localhost:8080/auth/";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
 
   public login(_username: string, _password: string) {

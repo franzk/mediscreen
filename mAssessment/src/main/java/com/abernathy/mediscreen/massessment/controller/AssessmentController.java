@@ -19,12 +19,12 @@ public class AssessmentController {
     }
 
     @PostMapping(path =  "/id", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<String> assessment(@RequestParam Integer patId) throws JsonProcessingException {
+    public ResponseEntity<String> assessment(@RequestParam Integer patId) {
         return new ResponseEntity<>(riskLevelService.assessment(patId), HttpStatus.OK);
     }
 
     @GetMapping("/{patientId}")
-    public ResponseEntity<RiskLevelDto> riskLevel(@PathVariable Integer patientId) throws JsonProcessingException {
+    public ResponseEntity<RiskLevelDto> riskLevel(@PathVariable Integer patientId)  {
         return new ResponseEntity<>(riskLevelService.calculateRiskLevel(patientId), HttpStatus.OK);
     }
 
