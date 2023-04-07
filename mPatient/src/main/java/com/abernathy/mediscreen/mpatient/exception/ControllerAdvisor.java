@@ -1,6 +1,7 @@
 package com.abernathy.mediscreen.mpatient.exception;
 
 import com.abernathy.mediscreen.mdto.exception.DateFormatException;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ import java.util.List;
  */
 @ControllerAdvice
 @PropertySource("classpath:messages.properties")
+@Log4j2
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @Value("${patient.error.patientnotfound}")
@@ -28,6 +31,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @Value("${patient.error.invaliddateformat}")
     private String invalidDateFormatErrorMessage;
+
 
     /**
      * @param ex      {@link PatientNotFoundException}
@@ -37,7 +41,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(PatientNotFoundException.class)
     protected ResponseEntity<Object> handlePatientNotFoundException(PatientNotFoundException ex,
                                                                     WebRequest request) {
-        return handleExceptionInternal(ex, patientNotFoundErrorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, patientNotFoundErrorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     /**
@@ -61,8 +65,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        log.info("handleMethodArgumentNotValid" + ex.getBindingResult().getFieldErrors().toString());
         List<FieldError> errors = ex.getBindingResult().getFieldErrors();
         List<String> errorMessages = errors.stream().map(err -> err.getDefaultMessage()).toList();
         return handleExceptionInternal(ex, errorMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(SQLException.class)
+    protected ResponseEntity<Object> handleSQLException(SQLException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.SERVICE_UNAVAILABLE, request);
     }
 }

@@ -26,6 +26,7 @@ export class PatientDisplayComponent implements OnInit {
               private assessmentService: AssessmentService) { }
 
   ngOnInit(): void {
+    console.log("hey");
     this.id = parseInt(this.route.snapshot.paramMap.get('id')?.toString()!);
     this.patient$ = this.patientService.getPatient(this.id);
     this.notes$ = this.noteService.getNotes(this.id);

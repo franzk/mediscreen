@@ -35,6 +35,8 @@ export class ErrorInterceptor implements HttpInterceptor {
           return throwError(() => error); // Registration errors See registration.component.ts
         }
 
+        this.router.navigateByUrl('/error', { state: { statusCode: error.status, statusText : errorMessage }});
+
         /*if ([0, 401, 500].includes(error.status)) {
           this.router.navigateByUrl('/error/' + error.status);
           return EMPTY;

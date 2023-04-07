@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { AuthenticationService } from "../service/authentication.service";
+import { tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,16 @@ export class AuthGard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-      console.log('canactivate');
+    let connected = true;
 
-      if (this.authenticationService.isConnected$) {
+    this.authenticationService.checkConnection().pipe(
+      tap((value) => {
+        connected = value;
+      })
+    ).subscribe();
+
+
+      if (connected) {
           return true;
       }
       else {

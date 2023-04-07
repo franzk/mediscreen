@@ -1,6 +1,6 @@
 package com.abernathy.mediscreen.mnotes.service;
 
-import com.abernathy.mediscreen.mnotes.exception.BadNoteImportRequestException;
+import com.abernathy.mediscreen.mnotes.exception.InvalidNoteDataException;
 import com.abernathy.mediscreen.mnotes.model.Note;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 @Log4j2
 public class ImportNoteService {
 
-    public Note parseUrlData(String data) throws BadNoteImportRequestException {
+    public Note parseUrlData(String data) throws InvalidNoteDataException {
 
         log.info(data);
         Pattern pattern = Pattern.compile("(.*?)¬e=(.*?)$", Pattern.DOTALL);
@@ -29,7 +29,7 @@ public class ImportNoteService {
             return newNote;
         }
         else {
-            throw new BadNoteImportRequestException();
+            throw new InvalidNoteDataException();
         }
     }
 }

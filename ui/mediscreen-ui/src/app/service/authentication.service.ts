@@ -50,6 +50,11 @@ export class AuthenticationService {
     return token;
   }
 
+  public checkConnection() {
+    this.getToken();
+    return this.isConnected$;
+  }
+
   public setToken(authToken : string) {
     localStorage.setItem('authToken', authToken);
   }

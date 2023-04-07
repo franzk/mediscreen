@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.sql.SQLException;
+
 @ControllerAdvice
 @Log4j2
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
@@ -32,6 +34,11 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleUserAlreadyExistsExceptionException(UserAlreadyExistsException ex,
                                                                   WebRequest request) {
         return handleExceptionInternal(ex, "User already exists ", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(SQLException.class)
+    protected ResponseEntity<Object> handleSQLException(SQLException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.SERVICE_UNAVAILABLE, request);
     }
 
 }

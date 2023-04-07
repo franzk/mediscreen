@@ -1,6 +1,6 @@
 package com.abernathy.mediscreen.mnotes.controller;
 
-import com.abernathy.mediscreen.mnotes.exception.BadNoteImportRequestException;
+import com.abernathy.mediscreen.mnotes.exception.InvalidNoteDataException;
 import com.abernathy.mediscreen.mnotes.model.Note;
 import com.abernathy.mediscreen.mnotes.service.ImportNoteService;
 import com.abernathy.mediscreen.mnotes.service.NoteService;
@@ -30,7 +30,11 @@ public class ImportController {
      * @return
      */
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Note> importNote(@RequestParam MultiValueMap<String,String> paramMap) throws BadNoteImportRequestException {
+    public ResponseEntity<Note> importNote(@RequestParam MultiValueMap<String,String> paramMap) throws InvalidNoteDataException {
+
+        if (paramMap.get("patId") == null) {
+            throw new InvalidNoteDataException();
+        }
 
         String data = paramMap.get("patId").get(0);
         log.info(data);

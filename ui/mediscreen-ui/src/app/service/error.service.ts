@@ -9,13 +9,12 @@ export class ErrorService {
 
   public getMessageError(error: any) : string {
 
-
     if (error.status == 0) {
       return "Connection with server failed";
     }
 
     if (error.error.message) {
-          return error.error.message;
+      return error.error.message;
     }
     else if (error.error) {
       return error.error;

@@ -48,7 +48,7 @@ public class PatientController {
      * @apiNote : curl -d "family=XXX&given=XXXX&dob=YYYY-MM-DD&sex=F&address=XXX&phone=XXX" -X POST http://domain:port/patient/add
      */
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Patient> createFromUrl(PatientUrlDto patientUrlDto) throws DateFormatException {
+    public ResponseEntity<Patient> createFromUrl(@Valid PatientUrlDto patientUrlDto) throws DateFormatException {
         return new ResponseEntity<>(patientService.add(patientMapper.patientUrlDtoToPatient(patientUrlDto)), HttpStatus.OK);
     }
 

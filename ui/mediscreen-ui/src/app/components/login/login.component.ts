@@ -11,21 +11,13 @@ import { EMPTY, catchError, tap, throwError } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  //username?: string;
-  //password?: string;
   error?: string;
   loginForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(history.state);
-    //if (history.state.error) {
-      this.error = history.state.error;
-    //}
-    //else {
-    //  this.error = "";
-    //}
+    this.error = history.state.error;
 
     let emailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     this.loginForm = this.formBuilder.group({

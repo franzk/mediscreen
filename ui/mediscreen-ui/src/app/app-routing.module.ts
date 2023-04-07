@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
 import { AuthGard } from './guards/auth-gard';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {path:'', component:PatientListComponent, canActivate: [AuthGard]},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'patient/add', component:PatientFormComponent, canActivate: [AuthGard]},
   {path: 'patient/:id', component:PatientDisplayComponent, canActivate: [AuthGard]},
   {path: 'patient/edit/:id', component:PatientFormComponent, canActivate: [AuthGard]},
+  {path: 'error', component:ErrorComponent},
 ];
 
 @NgModule({

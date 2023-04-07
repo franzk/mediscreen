@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { Patient } from 'src/app/model/patient';
@@ -23,10 +23,10 @@ export class PatientFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientForm = this.formBuilder.group({
-      lastName: [null],
-      firstName: [null],
-      birthdate: [null],
-      sex:  [null],
+      lastName: [null, Validators.required],
+      firstName: [null, Validators.required],
+      birthdate: [null, Validators.required],
+      sex:  [null, Validators.required],
       address: [null],
       phone: [null]
     });

@@ -15,6 +15,7 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ErrorInterceptor } from './interceptor/error-interceptor';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ErrorInterceptor } from './interceptor/error-interceptor';
     PatientFormComponent,
     NoteFormComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
