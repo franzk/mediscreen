@@ -40,7 +40,7 @@ public class ImportController {
         log.info(data);
 
         Note newNote = importNoteService.parseUrlData(data);
-        return new ResponseEntity<>(noteService.add(newNote), HttpStatus.OK);
+        return new ResponseEntity<>(noteService.add(newNote), HttpStatus.CREATED);
     }
 
 

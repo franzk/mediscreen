@@ -45,7 +45,7 @@ public class PatientController {
      * @param patientUrlDto dto for url encoded data
      * @return the created {@link Patient} and status code 200 (OK)
      * @throws DateFormatException if format YYYY-MM-DD is not respected
-     * @apiNote : curl -d "family=XXX&given=XXXX&dob=YYYY-MM-DD&sex=F&address=XXX&phone=XXX" -X POST http://domain:port/patient/add
+     * @apiNote : curl -d "family=XXX&given=XXXX&dob=YYYY-MM-DD&sex=F&address=XXX&phone=XXX" -X POST http://localhost:8081/patient/add
      */
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Patient> createFromUrl(@Valid PatientUrlDto patientUrlDto) throws DateFormatException {
@@ -58,7 +58,7 @@ public class PatientController {
      * @param patientDto {@link PatientDto} in the body of the request
      * @return the created {@link Patient} and status code 200 (OK)
      * @throws DateFormatException if format YYYY-MM-DD is not respected
-     * @apiNote curl -X POST http://domain:port/patient/insert
+     * @apiNote curl -X POST http://localhost:8081/patient/insert
      * -H "Content-Type: application/json"
      * -d "{\"lastName\": \"XX\",\"firstName\": \"XX\",\"birthdate\": \"YYYY-MM-DD\",\"sex\": \"F\", \"address\": \"XX\",\"phone\": \"XX\"}"
      */
@@ -71,7 +71,7 @@ public class PatientController {
     /**
      * GET (all) operation <br>
      * @return a list of all {@link Patient}s and status code 200 (OK)
-     * @apiNote curl -X GET http://domain:port/patient/
+     * @apiNote curl -X GET http://localhost:8081/patient/
      */
     @GetMapping("/")
     public ResponseEntity<List<Patient>> getAll() {
@@ -81,9 +81,9 @@ public class PatientController {
     /**
      * GET (by id) operation
      * @param id : the id of the requested {@link Patient}
-     * @return the requested {@link Patient} and status code 200 (OK)
+     * @return the requested {@link PatientDto} and status code 200 (OK)
      * @throws PatientNotFoundException if no patient exists with this id
-     * @apiNote curl -X GET http://domain:port/patient/1
+     * @apiNote curl -X GET http://localhost:8081/patient/1
      */
     @GetMapping("/{id}")
     public ResponseEntity<PatientDto> getById(@PathVariable Integer id) throws PatientNotFoundException {
@@ -96,7 +96,7 @@ public class PatientController {
      * @return the {@link Patient} updated and status code 200 (OK)
      * @throws PatientNotFoundException if no patient exists with the id of the updated {@link Patient}
      * @throws DateFormatException if format YYYY-MM-DD is not respected
-     * @apiNote curl -X PUT http://domain:port/patient/update
+     * @apiNote curl -X PUT http://localhost:8081/patient/update
      * -H "Content-Type: application/json"
      * -d "{\"lastName\": \"XX\",\"firstName\": \"XX\",\"birthdate\": \"YYYY-MM-DD\",\"sex\": \"F\", \"address\": \"XX\",\"phone\": \"XX\"}"
      */
@@ -110,7 +110,7 @@ public class PatientController {
      * @param id the id of the {@link Patient} to delete
      * @return delete completed message (see message.properties) and status code 200 (OK)
      * @throws PatientNotFoundException if no patient exists with this id
-     * @apiNote curl -X DELETE http://domain:port/patient/delete/2
+     * @apiNote curl -X DELETE http://localhost:8081/patient/delete/2
      */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws PatientNotFoundException {

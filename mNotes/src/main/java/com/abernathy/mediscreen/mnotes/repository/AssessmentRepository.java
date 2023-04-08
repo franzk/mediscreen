@@ -19,14 +19,13 @@ public class AssessmentRepository {
 
     private final MongoTemplate mongoTemplate;
 
-    public AssessmentRepository(MongoTemplate mongoTemplate) {
+    private final ObjectMapper mapper;
+
+    public AssessmentRepository(MongoTemplate mongoTemplate, ObjectMapper mapper) {
         this.mongoTemplate = mongoTemplate;
+        this.mapper = mapper;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getTriggersCount(Integer patientId, String triggersRegex) {
 
         MongoDatabase database = mongoTemplate.getDb();
@@ -81,7 +80,6 @@ public class AssessmentRepository {
         else {
             // Extract total form result
             Document resultDocument = result.first();
-            ObjectMapper mapper = new ObjectMapper();
             try {
                 TriggersCountResult r = mapper.readValue(resultDocument.toJson(), TriggersCountResult.class);
                 return r.getTotal();

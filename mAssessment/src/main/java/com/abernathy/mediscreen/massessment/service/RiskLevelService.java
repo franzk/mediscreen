@@ -22,7 +22,7 @@ public class RiskLevelService {
         this.patientProxy = patientProxy;
     }
 
-    public String assessment(int patientId) {
+    public String assessmentString(int patientId) {
 
         PatientDto patient = patientProxy.getPatientById(patientId);
         int patientAge = this.calculateAge(patient.getBirthdate());
@@ -34,11 +34,9 @@ public class RiskLevelService {
 
     }
 
-    public RiskLevelDto calculateRiskLevel(int patientId) {
-        PatientDto patient = patientProxy.getPatientById(patientId);
-        int patientAge = this.calculateAge(patient.getBirthdate());
+    public RiskLevelDto assessmentRiskLevelDto(int patientId) {
 
-        RiskLevel patientRiskLevel = this.calculateRiskLevel(patientId, patientAge, patient.getSex());
+        RiskLevel patientRiskLevel = this.calculateRiskLevel(patientId);
 
         RiskLevelDto riskLevelDto = new RiskLevelDto();
         riskLevelDto.setValue(patientRiskLevel.getValue());
@@ -48,7 +46,14 @@ public class RiskLevelService {
 
     }
 
-    private RiskLevel calculateRiskLevel(int patientId, int patientAge, String patientSex) {
+    protected RiskLevel calculateRiskLevel(int patientId) {
+        PatientDto patient = patientProxy.getPatientById(patientId);
+        int patientAge = this.calculateAge(patient.getBirthdate());
+        String patientSex = patient.getSex();
+        return calculateRiskLevel(patientId, patientAge, patientSex);
+    }
+
+    protected RiskLevel calculateRiskLevel(int patientId, int patientAge, String patientSex) {
 
         int triggersCount = triggersCountService.getTriggersCount(patientId);
 
@@ -84,7 +89,7 @@ public class RiskLevelService {
 
     }
 
-    private int calculateAge(String dob) {
+    protected int calculateAge(String dob) {
 
         try {
             LocalDate birthdate = DtoDateUtils.stringToDate(dob);
