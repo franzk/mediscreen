@@ -31,7 +31,7 @@ public class JwtService {
         return createToken(claims, userName);
     }
 
-    private String createToken(Map<String, Object> claims, String userName) {
+    protected String createToken(Map<String, Object> claims, String userName) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userName)
@@ -40,7 +40,7 @@ public class JwtService {
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 
-    private Key getSignKey() {
+    protected Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }

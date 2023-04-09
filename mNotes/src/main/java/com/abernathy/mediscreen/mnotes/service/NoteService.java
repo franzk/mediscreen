@@ -40,7 +40,6 @@ public class NoteService {
         else {
             throw new NoteNotFoundException();
         }
-
     }
 
     public void deleteById(String id) {

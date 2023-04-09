@@ -20,7 +20,6 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     protected ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException ex,
                                                                     WebRequest request) {
-        log.info("Bad Credentials !");
         return handleExceptionInternal(ex, "Bad Credentials", new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
     }
 
@@ -31,7 +30,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
-    protected ResponseEntity<Object> handleUserAlreadyExistsExceptionException(UserAlreadyExistsException ex,
+    protected ResponseEntity<Object> handleUserAlreadyExistsException(UserAlreadyExistsException ex,
                                                                   WebRequest request) {
         return handleExceptionInternal(ex, "User already exists ", new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }

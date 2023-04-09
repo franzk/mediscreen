@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+mediscreen-dto,com.abernathy.mediscreen.mdto.model,RiskLevelDto,0,3,0,0,0,1,0,1,0,1
+mediscreen-dto,com.abernathy.mediscreen.mdto.model,PatientDto,0,3,0,0,0,1,0,1,0,1
+mediscreen-dto,com.abernathy.mediscreen.mdto.service,DtoDateUtils,0,17,0,0,0,5,0,2,0,2
+mediscreen-dto,com.abernathy.mediscreen.mdto.exception,DateFormatException,0,3,0,0,0,1,0,1,0,1
+mediscreen-dto,com.abernathy.mediscreen.mdto,MDto2Application,4,0,0,0,2,0,2,0,2,0

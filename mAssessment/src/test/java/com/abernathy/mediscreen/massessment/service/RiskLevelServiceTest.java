@@ -12,6 +12,8 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -76,13 +78,47 @@ public class RiskLevelServiceTest {
 
     @Test
     void calculateRiskLevel3argsTest()  {
-        // Arrange
-        when(triggersCountService.getTriggersCount(anyInt())).thenReturn(random.nextInt());
-        // Act
-        RiskLevel result = serviceUnderTest.calculateRiskLevel(random.nextInt(), random.nextInt(), RandomString.make(64));
-        // Assert
-        assertThat(result).isNotNull();
+        testCalculateRiskLevel(10, 50, "M", RiskLevel.LEVEL_3);
+        testCalculateRiskLevel(7, 50, "M", RiskLevel.LEVEL_2);
+        testCalculateRiskLevel(4, 50, "M", RiskLevel.LEVEL_1);
+        testCalculateRiskLevel(10, 25, "M", RiskLevel.LEVEL_3);
+        testCalculateRiskLevel(4, 25, "M", RiskLevel.LEVEL_2);
+        testCalculateRiskLevel(10, 25, "F", RiskLevel.LEVEL_3);
+        testCalculateRiskLevel(6, 25, "F", RiskLevel.LEVEL_2);
+        testCalculateRiskLevel(0, 25, "F", RiskLevel.LEVEL_0);
+
     }
 
+
+    private void testCalculateRiskLevel(int triggersCount, int patientAge, String patientSex, RiskLevel riskLevelExpected) {
+        // Arrange
+        when(triggersCountService.getTriggersCount(anyInt())).thenReturn(triggersCount);
+        // Act
+        RiskLevel result = serviceUnderTest.calculateRiskLevel(random.nextInt(), patientAge, patientSex);
+        // Assert
+        assertThat(result).isEqualTo(riskLevelExpected);
+
+    }
+
+    @Test
+    void calculateAgeTest() {
+        // Arrange
+        String dob = "2012-12-21";
+        int realAge = Period.between(LocalDate.of(2012, 12, 21), LocalDate.now()).getYears();
+        // Act
+        int age = serviceUnderTest.calculateAge(dob);
+        // Assert
+        assertThat(age).isEqualTo(realAge);
+    }
+
+    @Test
+    void calculateAgeWithDateFormatExceptionTest() {
+        // Arrange
+        String dob = "2012-12-32";
+        // Act
+        int age = serviceUnderTest.calculateAge(dob);
+        // Assert
+        assertThat(age).isEqualTo(0);
+    }
 
 }
