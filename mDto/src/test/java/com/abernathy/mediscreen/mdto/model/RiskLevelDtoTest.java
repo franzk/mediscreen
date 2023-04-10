@@ -7,7 +7,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RiskLevelDtoTest {
+class RiskLevelDtoTest {
 
     @Test
     void riskLevelDtoTest() {

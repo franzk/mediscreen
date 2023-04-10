@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RiskLevelServiceTest {
+class RiskLevelServiceTest {
 
     @InjectMocks
     @Spy
@@ -118,7 +118,7 @@ public class RiskLevelServiceTest {
         // Act
         int age = serviceUnderTest.calculateAge(dob);
         // Assert
-        assertThat(age).isEqualTo(0);
+        assertThat(age).isZero();
     }
 
 }

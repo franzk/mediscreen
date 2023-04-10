@@ -1,7 +1,6 @@
 package com.abernathy.mediscreen.mpatient.model;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.PropertySource;

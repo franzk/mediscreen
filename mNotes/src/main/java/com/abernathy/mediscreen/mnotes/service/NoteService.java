@@ -42,8 +42,13 @@ public class NoteService {
         }
     }
 
-    public void deleteById(String id) {
-        noteRepository.deleteById(id);
+    public void deleteById(String id) throws NoteNotFoundException {
+        if (noteRepository.findById(id).isPresent()) {
+            noteRepository.deleteById(id);
+        }
+        else {
+            throw new NoteNotFoundException();
+        }
     }
 
 }

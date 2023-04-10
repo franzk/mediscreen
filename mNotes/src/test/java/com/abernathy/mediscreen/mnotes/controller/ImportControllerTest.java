@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ImportControllerTest {
+class ImportControllerTest {
 
     @InjectMocks
     private ImportController controllerUnderTest;

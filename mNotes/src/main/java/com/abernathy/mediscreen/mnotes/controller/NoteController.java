@@ -37,7 +37,7 @@ public class NoteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable String id) {
+    public ResponseEntity<String> deleteById(@PathVariable String id) throws NoteNotFoundException {
         log.info("Delete Note : " + id);
         noteService.deleteById(id);
         return new ResponseEntity<>("Note deleted", HttpStatus.OK);

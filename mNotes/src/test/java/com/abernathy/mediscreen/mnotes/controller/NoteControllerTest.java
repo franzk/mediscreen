@@ -21,7 +21,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class NoteControllerTest {
+class NoteControllerTest {
 
     @InjectMocks
     private NoteController controllerUnderTest;
@@ -65,7 +65,7 @@ public class NoteControllerTest {
     }
 
     @Test
-    void deleteByIdTest() {
+    void deleteByIdTest() throws NoteNotFoundException {
         // Arrange
         String patientId = RandomString.make(64);
         // Act
@@ -74,6 +74,5 @@ public class NoteControllerTest {
         verify(noteService, times(1)).deleteById(patientId);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
-
 
 }

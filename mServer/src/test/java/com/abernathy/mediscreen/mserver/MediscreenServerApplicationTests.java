@@ -2,12 +2,12 @@ package com.abernathy.mediscreen.mserver;
 
 
 //@SpringBootTest
-class MediscreenServerApplicationTests {
+//class MediscreenServerApplicationTests {
 
 //
 //	@Test
 //	void contextLoads() {
 //	}
 //
-}
+//}
 

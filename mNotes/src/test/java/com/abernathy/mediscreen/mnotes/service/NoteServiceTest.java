@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class NoteServiceTest {
+class NoteServiceTest {
 
     @InjectMocks
     private NoteService serviceUnderTest;
@@ -77,18 +77,26 @@ public class NoteServiceTest {
 
 
     @Test
-    void deleteByIdTest() {
+    void deleteByIdTest() throws NoteNotFoundException {
         // Arrange
         String noteId = RandomString.make(64);
+        when(noteRepository.findById(anyString())).thenReturn(Optional.of(new Note()));
 
         // Act
         serviceUnderTest.deleteById(noteId);
 
         // Assert
         verify(noteRepository, times(1)).deleteById(noteId);
+    }
 
+    @Test
+    void deleteByIdWithNoteNotFoundExceptionTest()  {
+        // Arrange
+        String noteId = RandomString.make(64);
+        when(noteRepository.findById(anyString())).thenReturn(Optional.empty());
 
-
+        // Act
+        assertThrows(NoteNotFoundException.class, () -> serviceUnderTest.deleteById(noteId));
     }
 
 }
