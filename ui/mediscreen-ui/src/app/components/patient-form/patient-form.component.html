@@ -1,7 +1,8 @@
-<ng-container *ngIf="notFoundError; else elseTemplate">
+<!--ng-container *ngIf="notFoundError; else elseTemplate">
   <p>Patient not found !</p>
-</ng-container>
-<ng-template #elseTemplate>
+</!--ng-container>
+<ng-template #elseTemplate-->
+
   <div class="card border-light position-relative col-md-8 mx-auto p-0 mt-2">
     <h5 class="card-header">
       <span *ngIf="isAddMode">New patient</span>
@@ -30,6 +31,6 @@
     </form>
     <div *ngIf="validationError" class="text-danger">{{ validationError }}</div>
   </div>
-</ng-template>
+<!--/ng-template-->
 
 

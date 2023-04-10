@@ -1,4 +1,4 @@
-<div *ngIf="patients$ | async as patients; else elseTemplate" class="patient col-md-10 m-auto">
+<div *ngIf="patients$ | async as patients" class="patient col-md-10 m-auto">
   <a [routerLink]="['patient/add']" class="btn btn-primary mb-2"><i class="bi bi-person-plus"></i></a>
   <table class="table">
     <thead>
@@ -24,6 +24,3 @@
   </tbody>
   </table>
 </div>
-<ng-template #elseTemplate>
-Impossible de se connecter au serveur.
-</ng-template>

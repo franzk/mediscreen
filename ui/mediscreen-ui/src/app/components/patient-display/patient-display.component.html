@@ -1,4 +1,4 @@
-<div  *ngIf="patient$ | async as patient; else elseTemplate" class="mt-2">
+<div  *ngIf="patient$ | async as patient" class="mt-2">
 
   <div class="card border-light position-relative col-md-8 m-auto p-0">
 
@@ -42,8 +42,4 @@
     </div>
   </div>
 </div>
-
-<ng-template #elseTemplate>
-  <p>Impossible de trouver le patient.</p>
-</ng-template>
 

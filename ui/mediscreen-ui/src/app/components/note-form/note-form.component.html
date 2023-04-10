@@ -12,7 +12,7 @@
     <a class="mr-2 clickable_icon" (click)="editMode(true)"><i class="bi bi-pencil"></i></a>
     <a class="mr-2 clickable_icon" (click)="deleteNote()"><i class="bi bi-trash"></i></a>
   </div>
-  <p class="m-2" [hidden]="formVisible">{{ note.content }} </p>
+  <p class="m-2 pr-5" [hidden]="formVisible">{{ note.content }} </p>
   <p class="note_date"> created : {{ note.creationDate }} / last update : {{ note.lastUpdateDate }}</p>
 </ng-container>
 
