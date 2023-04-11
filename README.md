@@ -15,6 +15,7 @@
 <br><img src="https://img.shields.io/badge/-MAVEN-black?style=for-the-badge&logo=apachemaven&logoColor=white">
 <img src="https://img.shields.io/badge/-JACOCO-810a00?style=for-the-badge">
 <br><img src="https://img.shields.io/badge/-ANGULAR-c41829?style=for-the-badge&logo=angular&logoColor=white"> 
+<br><img src="https://img.shields.io/badge/-DOCKER-2496ed?style=for-the-badge&logo=docker&logoColor=white">
 
 ## Microservices
 Le back office, créé avec _Spring Boot_ est divisée en plusieurs _microservices_ :   
