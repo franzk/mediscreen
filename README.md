@@ -8,6 +8,8 @@
 <img src="https://img.shields.io/badge/-SPRING%20WEB-397200?style=for-the-badge&logo=spring&logoColor=white">
 <img src="https://img.shields.io/badge/-SPRING%20DATA%20JPA-8db411?style=for-the-badge&logo=spring&logoColor=white">
 <img src="https://img.shields.io/badge/-SPRING%20DATA%20MONGODB-8db411?style=for-the-badge&logo=spring&logoColor=white">
+<img src="https://img.shields.io/badge/-SPRING%20CLOUD%20GATEWAY-8db411?style=for-the-badge&logo=spring&logoColor=white">
+<img src="https://img.shields.io/badge/-NETFLIX%20EUREKA-e71e2f?style=for-the-badge&logo=spring&logoColor=white">
 <br><img src="https://img.shields.io/badge/-MYSQL-006189?style=for-the-badge&logo=mysql&logoColor=white"> 
 <img src="https://img.shields.io/badge/-MONGODB-6eb442?style=for-the-badge&logo=mongodb&logoColor=white">
 <br><img src="https://img.shields.io/badge/-MAVEN-black?style=for-the-badge&logo=apachemaven&logoColor=white">
