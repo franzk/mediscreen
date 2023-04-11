@@ -3,8 +3,7 @@
 **Mediscreen** est une _application Web_ dont le but est de détecter, au sein de la base de données, les patients à risque les plus exposés au diabète de type 2.
 
 ## Stack technique 
-<img src="https://img.shields.io/badge/-JAVA%2017-00A7BB?style=for-the-badge&logo=java&logoColor=white">
-<img src="https://img.shields.io/badge/-SPRING%20BOOT%203.0.5-6eb442?style=for-the-badge&logo=spring&logoColor=white"
+<img src="https://img.shields.io/badge/-JAVA%2017-00A7BB?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/-SPRING%20BOOT%203.0.5-6eb442?style=for-the-badge&logo=spring&logoColor=white">
 <img src="https://img.shields.io/badge/-SPRING%20SECURITY-1a5900?style=for-the-badge&logo=spring&logoColor=white">
 <img src="https://img.shields.io/badge/-SPRING%20WEB-397200?style=for-the-badge&logo=spring&logoColor=white">
 <img src="https://img.shields.io/badge/-SPRING%20DATA%20JPA-8db411?style=for-the-badge&logo=spring&logoColor=white">
